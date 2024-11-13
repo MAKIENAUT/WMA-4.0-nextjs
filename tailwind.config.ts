@@ -12,6 +12,8 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        "wma-gold": "#FFD700",
+        "wma-darkTeal": "#004D4D",
       },
       borderRadius: {
         lg: "var(--radius)",
