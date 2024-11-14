@@ -263,25 +263,27 @@ const SidebarTrigger = React.forwardRef<
   React.ElementRef<typeof Button>,
   React.ComponentProps<typeof Button>
 >(({ className, onClick, ...props }, ref) => {
-  const { toggleSidebar } = useSidebar();
+  const { toggleSidebar, isMobile } = useSidebar();
 
-  return (
-    <Button
-      ref={ref}
-      data-sidebar="trigger"
-      variant="ghost"
-      size="sm"
-      className={cn("", className)}
-      onClick={(event) => {
-        onClick?.(event);
-        toggleSidebar();
-      }}
-      {...props}
-    >
-      <Menu />
-      <span className="sr-only">Toggle Sidebar</span>
-    </Button>
-  );
+  if (isMobile) {
+    return (
+      <Button
+        ref={ref}
+        data-sidebar="trigger"
+        variant="ghost"
+        size="sm"
+        className={cn("", className)}
+        onClick={(event) => {
+          onClick?.(event);
+          toggleSidebar();
+        }}
+        {...props}
+      >
+        <Menu />
+        <span className="sr-only">Toggle Sidebar</span>
+      </Button>
+    );
+  }
 });
 SidebarTrigger.displayName = "SidebarTrigger";
 

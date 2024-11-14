@@ -14,32 +14,34 @@ import { Button } from "./ui/button";
 import { X } from "lucide-react";
 
 export default function WMASidebar() {
-  const { toggleSidebar } = useSidebar();
+  const { toggleSidebar, isMobile } = useSidebar();
 
-  return (
-    <Sidebar side="right">
-      <SidebarHeader>
-        <Button variant="ghost" size="icon" onClick={toggleSidebar}>
-          <X />
-        </Button>
-      </SidebarHeader>
-      <SidebarContent>
-        <SidebarGroup>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {MENU_ITEMS.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild variant="outline">
-                    <a href={item.url}>{item.title}</a>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
-      </SidebarContent>
-    </Sidebar>
-  );
+  if (isMobile) {
+    return (
+      <Sidebar side="right">
+        <SidebarHeader>
+          <Button variant="ghost" size="icon" onClick={toggleSidebar}>
+            <X />
+          </Button>
+        </SidebarHeader>
+        <SidebarContent>
+          <SidebarGroup>
+            <SidebarGroupContent>
+              <SidebarMenu>
+                {MENU_ITEMS.map((item) => (
+                  <SidebarMenuItem key={item.title}>
+                    <SidebarMenuButton asChild variant="outline">
+                      <a href={item.url}>{item.title}</a>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                ))}
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+        </SidebarContent>
+      </Sidebar>
+    );
+  }
 }
 
 const MENU_ITEMS = [
