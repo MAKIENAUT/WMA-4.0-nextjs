@@ -1,5 +1,5 @@
 import { SidebarProvider } from "@/components/atoms/ui/sidebar";
-import Navbar from "@/components/molecules/navbar";
+import Navbar from "@/components/organisms/navbar";
 
 export default function Home() {
   return (
