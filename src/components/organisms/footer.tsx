@@ -33,6 +33,7 @@ export default function Footer() {
           <FooterLink url="/news" title="News" />
           <FooterLink url="/services" title="Services" />
           <FooterLink url="/about-us" title="About Us" />
+          <FooterLink url="#" title="Administrator" />
         </FooterLinkGroup>
         <FooterLinkGroup>
           <FooterLink url="/services/family-based" title="Family Based" />
