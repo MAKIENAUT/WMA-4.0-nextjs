@@ -7,7 +7,7 @@ import NavbarLinks from "../molecules/navbar-links";
 export default function Navbar() {
   return (
     <>
-      <nav className="fixed top-0 flex w-screen items-center justify-between p-2 sm:px-8 sm:py-4 lg:max-h-20 xl:px-20">
+      <nav className="fixed top-0 z-[9999] flex w-screen items-center justify-between bg-white p-2 sm:px-8 sm:py-4 lg:max-h-20 xl:px-20">
         <Link href="/">
           <Image
             src="/wma-logo.png"
