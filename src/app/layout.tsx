@@ -14,7 +14,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${dm_sans.className} antialiased`}>{children}</body>
+      <body
+        className={`${dm_sans.className} overflow-x-hidden bg-background antialiased`}
+      >
+        {children}
+      </body>
     </html>
   );
 }
