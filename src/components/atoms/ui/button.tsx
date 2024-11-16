@@ -18,12 +18,15 @@ const buttonVariants = cva(
           "bg-zinc-100 text-zinc-900 hover:bg-zinc-100/80 dark:bg-zinc-800 dark:text-zinc-50 dark:hover:bg-zinc-800/80",
         ghost: "hover:bg-zinc-100 hover:text-wma-darkTeal",
         link: "hover:text-wma-teal underline-offset-4 hover:underline active:text-wma-darkTeal font-medium",
+        "link-footer":
+          "hover:text-wma-gold items-start justify-normal hover:underline underline-offset-4 active:text-[#ebc700] font-medium w-fit",
       },
       size: {
         default: "px-4 py-2",
         sm: "p-2",
         lg: "px-8",
         icon: "h-10 w-10",
+        none: "",
       },
     },
     defaultVariants: {

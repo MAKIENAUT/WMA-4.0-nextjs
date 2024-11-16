@@ -25,6 +25,7 @@ export default {
         "wma-gold": "#FFD700",
         "wma-teal": "#036B56",
         "wma-darkTeal": "#004D4D",
+        "wma-footer": "#001D1D",
       },
       borderRadius: {
         lg: "var(--radius)",
