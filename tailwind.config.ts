@@ -10,7 +10,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
+        background: "#FFF3D6", // Added this line
         foreground: "var(--foreground)",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
