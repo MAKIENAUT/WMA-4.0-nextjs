@@ -10,7 +10,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
+        background: "#FFF3D6", // Added this line
         foreground: "var(--foreground)",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
@@ -22,7 +22,7 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        "wma-gold": "#FFD700",
+        "wma-gold": "#daa520",
         "wma-teal": "#036B56",
         "wma-darkTeal": "#004D4D",
         "wma-footer": "#001D1D",
@@ -35,5 +35,8 @@ export default {
     },
   },
   // eslint-disable-next-line @typescript-eslint/no-require-imports
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    require("@tailwindcss/aspect-ratio"),
+  ],
 } satisfies Config;
