@@ -15,7 +15,7 @@ export default function ServicesImage({
   return (
     <div
       className={cn(
-        "aspect-[16/9] size-full max-h-[200px] rounded-sm p-2 pb-0 sm:aspect-[2/3] sm:max-h-[344px] sm:pb-2 sm:pr-0 md:max-h-[368px] lg:aspect-[4/3] lg:max-h-[288px] lg:w-10/12 xl:max-h-full xl:w-9/12",
+        "aspect-[16/9] size-full max-h-[220px] rounded-sm p-2 pb-0 sm:aspect-[8/16] sm:max-h-[500px] sm:pb-2 sm:pr-0 md:aspect-[3/4] md:max-h-[420px] xl:aspect-[4/3] xl:w-9/12",
         className
       )}
     >

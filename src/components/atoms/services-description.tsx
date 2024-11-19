@@ -13,7 +13,7 @@ export default function ServicesDescription({
   return (
     <p
       className={cn(
-        `${dm_sans.className} text-sm font-medium text-white md:text-base`,
+        `${dm_sans.className} text-sm font-medium text-white sm:text-base lg:text-lg`,
         className
       )}
     >
