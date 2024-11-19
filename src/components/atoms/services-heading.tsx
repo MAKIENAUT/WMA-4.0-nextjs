@@ -1,4 +1,5 @@
 import { dm_sans } from "@/lib/fonts";
+import { cn } from "@/lib/utils";
 
 type ServicesHeadingProps = {
   text: string;
@@ -14,7 +15,10 @@ export default function ServicesHeading({
   const Tag = level;
   return (
     <Tag
-      className={`font-bold text-wma-teal ${dm_sans.className} ${className}`}
+      className={cn(
+        `text-2xl font-bold text-wma-darkTeal ${dm_sans.className} md:text-3xl`,
+        className
+      )}
     >
       {text}
     </Tag>
