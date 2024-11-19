@@ -9,7 +9,8 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-wma-gold text-black hover:bg-[#ebc700] active:bg-wma-gold",
+        default:
+          "bg-wma-gold text-black hover:bg-wma-darkGold active:bg-wma-gold",
         destructive:
           "bg-red-500 text-zinc-50 hover:bg-red-500/90 dark:bg-red-900 dark:text-zinc-50 dark:hover:bg-red-900/90",
         outline:
@@ -19,7 +20,7 @@ const buttonVariants = cva(
         ghost: "hover:bg-zinc-100 hover:text-wma-darkTeal",
         link: "hover:text-wma-teal underline-offset-4 hover:underline active:text-wma-darkTeal font-medium",
         "link-footer":
-          "hover:text-wma-gold items-start justify-normal hover:underline underline-offset-4 active:text-[#ebc700] font-medium w-fit",
+          "hover:text-wma-gold items-start justify-normal hover:underline underline-offset-4 active:text-wma-darkGold font-medium w-fit",
       },
       size: {
         default: "px-4 py-2",

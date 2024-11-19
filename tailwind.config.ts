@@ -22,7 +22,8 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        "wma-gold": "#daa520",
+        "wma-gold": "#F2C744",
+        "wma-darkGold": "#daa520",
         "wma-teal": "#036B56",
         "wma-darkTeal": "#004D4D",
         "wma-footer": "#001D1D",
@@ -34,9 +35,10 @@ export default {
       },
     },
   },
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
   plugins: [
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
     require("tailwindcss-animate"),
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
     require("@tailwindcss/aspect-ratio"),
   ],
 } satisfies Config;

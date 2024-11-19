@@ -14,21 +14,25 @@ type ServiceSectionProps = {
 
 export default function ServiceSection({ services }: ServiceSectionProps) {
   return (
-    <section
-      className={`mx-auto box-border max-w-6xl rounded-xl bg-white px-4 py-8 md:px-24 md:py-12 ${orelega_one.className}`}
-    >
-      <h2 className="mb-6 text-3xl tracking-wide text-black md:mb-8 md:text-6xl">
-        Our Services
-      </h2>
-      {services.map((service, index) => (
-        <ServiceCard
-          key={index}
-          title={service.title}
-          description={service.description}
-          imageUrl={service.imageUrl}
-          buttonLabel={service.buttonLabel}
-        />
-      ))}
+    <section className="px-4 sm:px-8 xl:px-20">
+      <div className="mx-auto flex max-w-[1280px] flex-col gap-6 rounded-xl bg-white px-4 py-8 sm:px-8 md:gap-8 lg:px-14 lg:py-10 xl:px-16 xl:py-12">
+        <h2
+          className={`${orelega_one.className} text-4xl text-black md:text-5xl xl:text-6xl`}
+        >
+          Our Services
+        </h2>
+        <div className="flex flex-col gap-8">
+          {services.map((service, index) => (
+            <ServiceCard
+              key={index}
+              title={service.title}
+              description={service.description}
+              imageUrl={service.imageUrl}
+              buttonLabel={service.buttonLabel}
+            />
+          ))}
+        </div>
+      </div>
     </section>
   );
 }

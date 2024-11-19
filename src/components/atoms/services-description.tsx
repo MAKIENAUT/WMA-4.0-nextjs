@@ -1,4 +1,5 @@
 import { dm_sans } from "@/lib/fonts";
+import { cn } from "@/lib/utils";
 
 type ServicesDescriptionProps = {
   text: string;
@@ -10,7 +11,12 @@ export default function ServicesDescription({
   className,
 }: ServicesDescriptionProps) {
   return (
-    <p className={`${dm_sans.className} text-foreground ${className}`}>
+    <p
+      className={cn(
+        `${dm_sans.className} text-sm font-medium text-white md:text-base`,
+        className
+      )}
+    >
       {text}
     </p>
   );
