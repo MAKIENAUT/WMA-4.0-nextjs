@@ -24,6 +24,13 @@ export default function ServiceTemplate() {
       imageUrl: "/forklift-services.jpg",
       buttonLabel: "Learn more",
     },
+    {
+      title: "Web Development",
+      description:
+        "Our web development services are tailored to bring your digital vision to life. Whether you need a simple website or a complex web application, our team of skilled developers specializes in creating responsive, user-friendly, and scalable solutions. We work closely with you to ensure the design and functionality align perfectly with your business goals.",
+      imageUrl: "/web-development.jpg",
+      buttonLabel: "Explore now",
+    },
   ];
 
   return <ServiceSection services={services} />;
