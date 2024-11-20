@@ -1,4 +1,5 @@
 import HeroSection from "@/components/organisms/hero-section";
+import PromiseSection from "@/components/organisms/promise-section";
 import StatementSection from "@/components/organisms/statement-section";
 import ServiceTemplate from "@/components/templates/ServiceTemplate";
 
@@ -8,6 +9,7 @@ export default function Home() {
       <HeroSection />
       <StatementSection />
       <ServiceTemplate />
+      <PromiseSection />
     </main>
   );
 }
