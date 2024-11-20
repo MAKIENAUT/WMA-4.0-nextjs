@@ -2,7 +2,7 @@ import StatementImage from "../molecules/statement-image";
 
 export default function StatementSection() {
   return (
-    <section className="mb-12 px-4 sm:px-8 xl:px-20">
+    <section className="mb-12 px-4 sm:px-8 md:mb-16 lg:mb-24 xl:px-20">
       <div className="mx-auto flex max-w-[1280px] flex-col items-center justify-center gap-6 rounded-xl bg-white px-4 py-8 sm:flex-row sm:px-8 md:gap-8 md:p-12 lg:px-20 lg:py-10 xl:gap-20 xl:px-24 xl:py-12">
         <StatementImage />
         <p className="font-semibold text-wma-darkTeal sm:w-full md:text-lg xl:text-2xl">
