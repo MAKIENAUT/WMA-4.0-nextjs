@@ -14,7 +14,7 @@ type ServiceSectionProps = {
 
 export default function ServiceSection({ services }: ServiceSectionProps) {
   return (
-    <section className="px-4 sm:px-8 xl:px-20">
+    <section className="mb-32 px-4 sm:px-8 xl:px-20">
       <div className="mx-auto flex max-w-[1280px] flex-col gap-6 rounded-xl bg-white px-4 py-8 sm:px-8 md:gap-8 lg:px-14 lg:py-10 xl:px-16 xl:py-12">
         <h2
           className={`${orelega_one.className} text-4xl text-black md:text-5xl xl:text-6xl`}

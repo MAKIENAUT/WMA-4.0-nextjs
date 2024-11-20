@@ -6,7 +6,7 @@ import FooterLinkGroup from "../molecules/footer-link-group";
 
 export default function Footer() {
   return (
-    <footer className="mt-96 flex w-screen flex-col divide-y divide-wma-teal bg-wma-footer px-4 text-white sm:px-8 xl:px-20">
+    <footer className="flex w-screen flex-col divide-y divide-wma-teal bg-wma-footer px-4 text-white sm:px-8 xl:px-20">
       <FooterGroup className="pb-8">
         <FooterLogos />
         <div className="flex flex-col gap-4 sm:basis-full">
