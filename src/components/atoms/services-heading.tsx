@@ -16,7 +16,7 @@ export default function ServicesHeading({
   return (
     <Tag
       className={cn(
-        `text-2xl font-bold text-wma-darkTeal ${dm_sans.className} md:text-3xl`,
+        `text-2xl font-bold text-wma-darkTeal ${dm_sans.className} md:text-3xl xl:text-4xl`,
         className
       )}
     >
