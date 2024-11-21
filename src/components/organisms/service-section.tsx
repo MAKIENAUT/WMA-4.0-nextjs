@@ -23,7 +23,7 @@ export default function ServiceSection({
       className={
         type === "section"
           ? "mb-32 px-4 sm:px-8 xl:px-20"
-          : "px-4 pt-10 sm:px-8 md:pt-12 lg:pt-16 xl:px-20 xl:pt-20"
+          : "px-4 pt-10 sm:px-8 md:pt-12 xl:px-20"
       }
     >
       <div
