@@ -8,7 +8,7 @@ export default function Home() {
     <main className="mt-[56px] sm:mt-[72px] md:mt-[80px]">
       <HeroSection />
       <StatementSection />
-      <ServiceTemplate />
+      <ServiceTemplate type="section" />
       <PromiseSection />
     </main>
   );
