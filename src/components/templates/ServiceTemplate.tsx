@@ -1,7 +1,8 @@
 // components/templates/ServiceTemplate.tsx
+import { ServiceProps } from "@/types/service-type";
 import ServiceSection from "../organisms/service-section";
 
-export default function ServiceTemplate() {
+export default function ServiceTemplate({ type }: { type: ServiceProps }) {
   const services = [
     {
       title: "Study And Exchange",
@@ -33,5 +34,5 @@ export default function ServiceTemplate() {
     },
   ];
 
-  return <ServiceSection services={services} />;
+  return <ServiceSection services={services} type={type} />;
 }
