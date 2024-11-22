@@ -21,6 +21,8 @@ const buttonVariants = cva(
         link: "hover:text-wma-teal underline-offset-4 hover:underline active:text-wma-darkTeal font-medium",
         "link-footer":
           "hover:text-wma-gold items-start justify-normal hover:underline underline-offset-4 active:text-wma-darkGold font-medium w-fit",
+        carousel:
+          "rounded-none border-b-2 border-transparent hover:text-wma-darkTeal text-[#7E7E7E] sm:text-lg xl:text-xl",
       },
       size: {
         default: "px-4 py-2",
