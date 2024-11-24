@@ -1,33 +1,56 @@
-import { notFound } from "next/navigation";
-import ServiceTemplate from "@/components/templates/ServiceTemplate";
+// app/[serviceName]/page.tsx
+import { Metadata } from "next";
 import HeroTemplate from "@/components/templates/HeroTemplate";
-import { immigrationServices } from "@/components/templates/ServiceTemplate";
+import ServiceTemplate, {
+  immigrationServices,
+} from "@/components/templates/ServiceTemplate";
+import { notFound } from "next/navigation";
 
-interface ServicePageProps {
-  params: Awaited<{
+type Props = {
+  params: {
     serviceName: string;
-  }>;
+  };
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const service = immigrationServices[params.serviceName];
+
+  if (!service) {
+    return {
+      title: "Service Not Found",
+    };
+  }
+
+  return {
+    title: service.title,
+    description: service.description,
+  };
 }
 
-export default function ServicePage({ params }: ServicePageProps) {
+export default function ServicePage({ params }: Props) {
   const { serviceName } = params;
 
+  // Check if service exists
   if (!immigrationServices[serviceName]) {
     notFound();
   }
 
   return (
-    <>
+    <main className="min-h-screen">
+      {/* Hero Section */}
       <HeroTemplate route={serviceName} />
-      <ServiceTemplate serviceName={serviceName} />
-    </>
+
+      {/* Service Details Section */}
+      <div className="container mx-auto px-4 py-8">
+        <ServiceTemplate serviceName={serviceName} />
+      </div>
+    </main>
   );
 }
 
-export async function generateStaticParams(): Promise<
-  { params: { serviceName: string } }[]
-> {
-  return Object.keys(immigrationServices).map((serviceName) => ({
-    params: { serviceName },
+// Generate static paths for all known services
+export async function generateStaticParams() {
+  return Object.keys(immigrationServices).map((service) => ({
+    serviceName: service,
   }));
 }
