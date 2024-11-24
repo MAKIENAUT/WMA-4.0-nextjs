@@ -10,7 +10,6 @@ interface Props {
   params: {
     serviceName: string;
   };
-  searchParams: { [key: string]: string | string[] | undefined };
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -28,7 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function ServicePage({ params, searchParams }: Props) {
+export default async function ServicePage({ params }: Props) {
   const { serviceName } = params;
 
   // Check if service exists
