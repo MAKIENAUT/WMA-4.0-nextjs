@@ -1,19 +1,18 @@
-// page.tsx
 import { notFound } from "next/navigation";
 import ServiceTemplate from "@/components/templates/ServiceTemplate";
 import HeroTemplate from "@/components/templates/HeroTemplate";
 import { immigrationServices } from "@/components/templates/ServiceTemplate";
-import { ServiceData } from "@/types/services";
 
+// Update the interface to use Partial<> with async params
 interface ServicePageProps {
-  params: {
+  params: Partial<{
     serviceName: string;
-  };
+  }>;
 }
 
-export default async function ServicePage(props: ServicePageProps) {
-  const { serviceName } = await Promise.resolve(props.params);
-
+export default async function ServicePage({
+  params: { serviceName = "" },
+}: ServicePageProps) {
   if (!immigrationServices[serviceName]) {
     notFound();
   }
