@@ -1,4 +1,3 @@
-import HeroTemplate from "@/components/templates/HeroTemplate";
 import React from "react";
 
 export default function ServiceLayout({

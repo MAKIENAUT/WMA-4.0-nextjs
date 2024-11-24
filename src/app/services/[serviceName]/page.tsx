@@ -20,7 +20,6 @@ async function fetchServiceData(
 
 export default async function ServicePage(props: ServicePageProps) {
   const { serviceName } = await Promise.resolve(props.params);
-  const serviceData = await fetchServiceData(serviceName);
 
   if (!immigrationServices[serviceName]) {
     notFound();
