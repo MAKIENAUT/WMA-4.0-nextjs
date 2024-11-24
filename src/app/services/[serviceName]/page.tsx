@@ -11,18 +11,10 @@ interface ServicePageProps {
   };
 }
 
-async function fetchServiceData(
-  serviceName: string
-): Promise<ServiceData | null> {
-  await new Promise((resolve) => setTimeout(resolve, 100));
-  return immigrationServices[serviceName] || null;
-}
-
 export default async function ServicePage(props: ServicePageProps) {
   const { serviceName } = await Promise.resolve(props.params);
-  const serviceData = await fetchServiceData(serviceName);
 
-  if (!serviceData) {
+  if (!immigrationServices[serviceName]) {
     notFound();
   }
 
