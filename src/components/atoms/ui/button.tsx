@@ -21,6 +21,8 @@ const buttonVariants = cva(
         link: "hover:text-wma-teal underline-offset-4 hover:underline active:text-wma-darkTeal font-medium",
         "link-footer":
           "hover:text-wma-gold items-start justify-normal hover:underline underline-offset-4 active:text-wma-darkGold font-medium w-fit",
+        service:
+          "bg-teal-800 text-white hover:bg-teal-900 transition-colors duration-200",
       },
       size: {
         default: "px-4 py-2",
