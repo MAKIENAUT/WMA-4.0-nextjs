@@ -1,4 +1,3 @@
-// page.tsx
 import { notFound } from "next/navigation";
 import ServiceTemplate from "@/components/templates/ServiceTemplate";
 import HeroTemplate from "@/components/templates/HeroTemplate";
@@ -10,8 +9,8 @@ interface ServicePageProps {
   };
 }
 
-export default async function ServicePage(props: ServicePageProps) {
-  const { serviceName } = props.params;
+export default function ServicePage({ params }: ServicePageProps) {
+  const { serviceName } = params;
 
   if (!immigrationServices[serviceName]) {
     notFound();
@@ -25,8 +24,10 @@ export default async function ServicePage(props: ServicePageProps) {
   );
 }
 
-export async function generateStaticParams() {
+export async function generateStaticParams(): Promise<
+  { params: { serviceName: string } }[]
+> {
   return Object.keys(immigrationServices).map((serviceName) => ({
-    serviceName,
+    params: { serviceName },
   }));
 }
