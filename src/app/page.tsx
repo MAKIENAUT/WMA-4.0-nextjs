@@ -1,14 +1,14 @@
-import HeroSection from "@/components/organisms/hero-section";
+import HeroTemplate from "@/components/templates/HeroTemplate";
 import PromiseSection from "@/components/organisms/promise-section";
 import StatementSection from "@/components/organisms/statement-section";
-import ServiceTemplate from "@/components/templates/ServiceTemplate";
+import ServiceOverviewTemplate from "@/components/templates/ServiceOverviewTemplate";
 
 export default function Home() {
   return (
     <main className="mt-[56px] sm:mt-[72px] md:mt-[80px]">
-      <HeroSection />
+      <HeroTemplate route="home" />
       <StatementSection />
-      <ServiceTemplate type="section" />
+      <ServiceOverviewTemplate type="section" />
       <PromiseSection />
     </main>
   );
