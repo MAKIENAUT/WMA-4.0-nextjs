@@ -9,6 +9,7 @@ type ServiceCardProps = {
   description: string;
   imageUrl: string;
   buttonLabel: string;
+  route: string;
 };
 
 export default function ServiceCard({
@@ -16,6 +17,7 @@ export default function ServiceCard({
   description,
   imageUrl,
   buttonLabel,
+  route,
 }: ServiceCardProps) {
   return (
     <div className="flex flex-col gap-2">
@@ -25,7 +27,7 @@ export default function ServiceCard({
         <div className="flex size-full flex-col gap-4 p-4 sm:gap-8 sm:overflow-y-auto lg:p-6">
           <ServicesDescription text={description} />
           <Button variant="default" className={`self-start`} asChild>
-            <Link href="#">{buttonLabel}</Link>
+            <Link href={route}>{buttonLabel}</Link>
           </Button>
         </div>
       </div>

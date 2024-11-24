@@ -7,6 +7,7 @@ type Service = {
   description: string;
   imageUrl: string;
   buttonLabel: string;
+  route: string;
 };
 
 type ServiceSectionProps = {
@@ -46,6 +47,7 @@ export default function ServiceSection({
               description={service.description}
               imageUrl={service.imageUrl}
               buttonLabel={service.buttonLabel}
+              route={service.route}
             />
           ))}
         </div>
