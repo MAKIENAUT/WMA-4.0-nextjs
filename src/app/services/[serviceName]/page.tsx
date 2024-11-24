@@ -1,21 +1,17 @@
+// page.tsx
 import { notFound } from "next/navigation";
 import ServiceTemplate from "@/components/templates/ServiceTemplate";
 import HeroTemplate from "@/components/templates/HeroTemplate";
 import { immigrationServices } from "@/components/templates/ServiceTemplate";
-import { Metadata } from "next";
 
-// Define the params type
-type ServiceParams = {
-  serviceName: string;
-};
+interface ServicePageProps {
+  params: {
+    serviceName: string;
+  };
+}
 
-// Page component with correct Next.js 13+ typing
-export default async function ServicePage({
-  params,
-}: {
-  params: ServiceParams;
-}) {
-  const { serviceName } = params;
+export default async function ServicePage(props: ServicePageProps) {
+  const { serviceName } = props.params;
 
   if (!immigrationServices[serviceName]) {
     notFound();
@@ -29,14 +25,8 @@ export default async function ServicePage({
   );
 }
 
-// Metadata generation with correct typing
-export async function generateMetadata({
-  params,
-}: {
-  params: ServiceParams;
-}): Promise<Metadata> {
-  return {
-    title: `${params.serviceName} - Your Site Name`,
-    description: `Learn more about our ${params.serviceName} services`,
-  };
+export async function generateStaticParams() {
+  return Object.keys(immigrationServices).map((serviceName) => ({
+    serviceName,
+  }));
 }
