@@ -1,17 +1,50 @@
-import { orelega_one } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
 
-export default function HeaderText() {
+interface HeaderTextProps {
+  title: string;
+  highlightedText: string;
+  className?: string;
+  titleClassName?: string;
+  highlightClassName?: string;
+  backgroundGradient?: string;
+  fontFamily?: string;
+}
+
+export default function HeaderText({
+  title,
+  highlightedText,
+  className = "",
+  titleClassName = "",
+  highlightClassName = "text-wma-gold",
+  backgroundGradient = "from-wma-darkTeal to-wma-teal",
+  fontFamily = "",
+}: HeaderTextProps) {
   return (
-    <div className="z-10 bg-gradient-to-r from-wma-darkTeal to-wma-teal px-2 py-16 sm:px-8 sm:[clip-path:polygon(0_0,100%_0,86%_100%,0%_100%)] min-[876px]:py-20 min-[1170px]:py-28 xl:px-20">
+    <div
+      className={cn(
+        "z-10 bg-gradient-to-r",
+        backgroundGradient,
+        "px-2 py-10",
+        "sm:px-8 sm:py-14 sm:[clip-path:polygon(0_0,100%_0,86%_100%,0%_100%)]",
+        "md:py-16",
+        "lg:px-12 lg:py-20",
+        "xl:px-20 xl:py-28",
+        className
+      )}
+    >
       <h1
         className={cn(
-          orelega_one.className,
-          "text-5xl text-white sm:max-w-[330px] md:max-w-[420px] md:text-6xl min-[876px]:max-w-[500px] min-[876px]:text-7xl min-[1170px]:max-w-[640px] min-[1170px]:text-[5.5rem]"
+          fontFamily,
+          "text-4xl",
+          "sm:max-w-[330px] sm:text-5xl",
+          "md:max-w-[420px] md:text-6xl",
+          "lg:max-w-[500px] lg:text-7xl",
+          "xl:max-w-[640px] xl:text-[5.5rem]",
+          "text-white",
+          titleClassName
         )}
       >
-        Venture West:{" "}
-        <span className="text-wma-gold">Where Dreams Take Flight</span>
+        {title} <span className={highlightClassName}>{highlightedText}</span>
       </h1>
     </div>
   );

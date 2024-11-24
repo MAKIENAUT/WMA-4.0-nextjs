@@ -1,8 +1,26 @@
+import { cn } from "@/lib/utils";
 import { ReactNode } from "react";
 
-export default function HeaderGroup({ children }: { children: ReactNode }) {
+interface HeaderGroupProps {
+  children: ReactNode;
+  className?: string;
+}
+
+export default function HeaderGroup({
+  children,
+  className = "",
+}: HeaderGroupProps) {
   return (
-    <div className="mx-auto max-w-[1440px] grid-cols-[70%_auto] sm:grid lg:grid-cols-[65%_auto] min-[1440px]:grid-cols-[60%_auto]">
+    <div
+      className={cn(
+        "mx-auto h-full max-w-[1440px]",
+        "w-full",
+        "sm:grid sm:grid-cols-[70%_auto]",
+        "lg:grid-cols-[65%_auto]",
+        "xl:grid-cols-[60%_auto]",
+        className
+      )}
+    >
       {children}
     </div>
   );

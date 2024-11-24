@@ -1,13 +1,38 @@
 import Image from "next/image";
+import { cn } from "@/lib/utils";
 
-export default function HeaderImage() {
+interface HeaderImageProps {
+  imageSrc: string;
+  alt: string;
+  className?: string;
+  imageClassName?: string;
+}
+
+export default function HeaderImage({
+  imageSrc,
+  alt,
+  className = "",
+  imageClassName = "",
+}: HeaderImageProps) {
   return (
-    <div className="relative left-[-5rem] hidden h-full w-96 sm:block md:left-[-7rem] md:w-[450px] lg:left-[-8rem] lg:w-[600px] xl:left-[-9rem] xl:w-[700px] min-[1440px]:w-[900px]">
+    <div
+      className={cn(
+        "relative hidden h-full",
+        "left-[-5rem] w-96",
+        "md:left-[-7rem] md:w-[450px]",
+        "lg:left-[-8rem] lg:w-[600px]",
+        "xl:left-[-9rem] xl:w-[700px]",
+        "min-[1440px]:w-[900px]",
+        "sm:block",
+        className
+      )}
+    >
       <Image
-        src="/san-fran-bridge.jpeg"
-        alt="San Francisco bridge"
+        src={imageSrc}
+        alt={alt}
         fill
-        className="object-cover object-left"
+        className={cn("object-cover object-left", imageClassName)}
+        sizes="(min-width: 1440px) 900px, (min-width: 1280px) 700px, (min-width: 1024px) 600px, (min-width: 768px) 450px, 384px"
       />
     </div>
   );
