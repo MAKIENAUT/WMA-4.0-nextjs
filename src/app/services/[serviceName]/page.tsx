@@ -2,21 +2,21 @@ import { notFound } from "next/navigation";
 import ServiceTemplate from "@/components/templates/ServiceTemplate";
 import HeroTemplate from "@/components/templates/HeroTemplate";
 import { immigrationServices } from "@/components/templates/ServiceTemplate";
+import { Metadata } from "next";
 
 // Define the params type
 type ServiceParams = {
   serviceName: string;
 };
 
-// Use the proper Next.js page props type
-interface ServicePageProps {
+// Page component with correct Next.js 13+ typing
+export default async function ServicePage({
+  params,
+}: {
   params: ServiceParams;
-  searchParams: { [key: string]: string | string[] | undefined };
-}
+}) {
+  const { serviceName } = params;
 
-export default function ServicePage({
-  params: { serviceName },
-}: ServicePageProps) {
   if (!immigrationServices[serviceName]) {
     notFound();
   }
@@ -29,8 +29,12 @@ export default function ServicePage({
   );
 }
 
-// Optionally, you can add generateMetadata for better SEO
-export async function generateMetadata({ params }: { params: ServiceParams }) {
+// Metadata generation with correct typing
+export async function generateMetadata({
+  params,
+}: {
+  params: ServiceParams;
+}): Promise<Metadata> {
   return {
     title: `${params.serviceName} - Your Site Name`,
     description: `Learn more about our ${params.serviceName} services`,
