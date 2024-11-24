@@ -4,9 +4,9 @@ import HeroTemplate from "@/components/templates/HeroTemplate";
 import { immigrationServices } from "@/components/templates/ServiceTemplate";
 
 interface ServicePageProps {
-  params: {
+  params: Awaited<{
     serviceName: string;
-  };
+  }>;
 }
 
 export default function ServicePage({ params }: ServicePageProps) {
