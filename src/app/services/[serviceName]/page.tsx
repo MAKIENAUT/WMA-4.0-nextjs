@@ -1,4 +1,3 @@
-// app/services/[serviceName]/page.tsx
 import { Metadata } from "next";
 import HeroTemplate, { heroConfigs } from "@/components/templates/HeroTemplate";
 import ServiceTemplate, {
@@ -6,14 +5,21 @@ import ServiceTemplate, {
 } from "@/components/templates/ServiceTemplate";
 import { notFound } from "next/navigation";
 
-interface Props {
-  params: {
-    serviceName: string;
-  };
+interface Params {
+  serviceName: string;
 }
 
+type SearchParams = { [key: string]: string | string[] | undefined };
+
+// Adjusting the Params and SearchParams to be Promises
+type Props = {
+  params: Promise<Params>;
+  searchParams: Promise<SearchParams>;
+};
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const service = immigrationServices[params.serviceName];
+  const resolvedParams = await params;
+  const service = immigrationServices[resolvedParams.serviceName];
 
   if (!service) {
     return {
@@ -28,15 +34,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function ServicePage({ params }: Props) {
-  const { serviceName } = params;
+  const resolvedParams = await params;
+  const { serviceName } = resolvedParams;
 
   // Check if service exists
   if (!immigrationServices[serviceName]) {
     notFound();
   }
 
-  // Fixed type guard with correct typing
-  // Fixed type guard with correct typing
+  // Type guard for valid hero route
   const isValidHeroRoute = (
     route: string
   ): route is keyof typeof heroConfigs => {
