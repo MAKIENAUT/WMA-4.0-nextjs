@@ -12,7 +12,7 @@ export interface HeroConfig {
   titleFont?: string;
 }
 
-const heroConfigs: Record<string, HeroConfig> = {
+export const heroConfigs: Record<string, HeroConfig> = {
   home: {
     title: "Venture West:",
     highlightedText: "Where Dreams Take Flight",

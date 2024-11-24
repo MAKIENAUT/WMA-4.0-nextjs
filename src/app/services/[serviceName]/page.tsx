@@ -1,16 +1,17 @@
-// app/[serviceName]/page.tsx
+// app/services/[serviceName]/page.tsx
 import { Metadata } from "next";
-import HeroTemplate from "@/components/templates/HeroTemplate";
+import HeroTemplate, { heroConfigs } from "@/components/templates/HeroTemplate";
 import ServiceTemplate, {
   immigrationServices,
 } from "@/components/templates/ServiceTemplate";
 import { notFound } from "next/navigation";
 
-type Props = {
+interface Props {
   params: {
     serviceName: string;
   };
-};
+  searchParams: { [key: string]: string | string[] | undefined };
+}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const service = immigrationServices[params.serviceName];
@@ -27,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default function ServicePage({ params }: Props) {
+export default async function ServicePage({ params, searchParams }: Props) {
   const { serviceName } = params;
 
   // Check if service exists
@@ -35,12 +36,21 @@ export default function ServicePage({ params }: Props) {
     notFound();
   }
 
+  // Fixed type guard with correct typing
+  // Fixed type guard with correct typing
+  const isValidHeroRoute = (
+    route: string
+  ): route is keyof typeof heroConfigs => {
+    return route in heroConfigs;
+  };
+
+  // Set the hero route, defaulting to 'home' if not found
+  const heroRoute = isValidHeroRoute(serviceName) ? serviceName : "home";
+
   return (
     <main className="min-h-screen">
-      {/* Hero Section */}
-      <HeroTemplate route={serviceName} />
+      <HeroTemplate route={heroRoute} />
 
-      {/* Service Details Section */}
       <div className="container mx-auto px-4 py-8">
         <ServiceTemplate serviceName={serviceName} />
       </div>
