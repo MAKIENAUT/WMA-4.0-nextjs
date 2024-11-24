@@ -24,8 +24,8 @@ export default async function ServicePage({
   );
 }
 
-export async function generateStaticParams() {
-  return Object.keys(immigrationServices).map((serviceName) => ({
-    serviceName,
-  }));
-}
+// export async function generateStaticParams() {
+//   return Object.keys(immigrationServices).map((serviceName) => ({
+//     serviceName,
+//   }));
+// }
