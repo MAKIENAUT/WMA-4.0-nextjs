@@ -5,6 +5,18 @@ import { Button } from "@/components/atoms/ui/button";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 
+type DataProps = {
+  url: string;
+  title: string;
+  image: {
+    src: string;
+    position: string;
+    alt: string;
+  };
+  date: string;
+  text: string[];
+};
+
 export default async function page({
   params,
 }: {
@@ -13,7 +25,7 @@ export default async function page({
   const slugs = (await params).slug;
   const data = DUMMY_DATAS.find(
     (datas) => datas.category === slugs[0]
-  )?.posts.find((post) => post.url === slugs[1]);
+  )?.posts.find((post) => post.url === slugs[1]) as DataProps;
 
   return (
     <main className="mt-[56px] bg-white sm:mt-[72px] md:mt-[80px]">
@@ -33,26 +45,28 @@ export default async function page({
           </div>
           <div className="flex flex-col gap-4">
             <Image
-              src={data!.image.src}
+              src={data.image.src}
               width={2000}
               height={2000}
               className={cn(
                 "aspect-[16/9] rounded-sm object-cover",
-                data?.image.position
+                data.image.position
               )}
-              alt={data!.image.alt}
+              alt={data.image.alt}
             />
             <div className="inline-flex flex-col gap-4 lg:gap-8">
               <div className="inline-flex flex-col gap-2">
                 <p className="text-sm font-semibold text-wma-teal">
-                  {data?.date}
+                  {data.date}
                 </p>
                 <h1 className="text-2xl font-semibold sm:text-3xl md:text-4xl lg:text-5xl">
-                  {data?.title}
+                  {data.title}
                 </h1>
               </div>
               <div className="flex flex-col gap-4">
-                {data?.text.map((text, i) => <p key={i}>{text}</p>)}
+                {data.text.map((text, i) => (
+                  <p key={i}>{text}</p>
+                ))}
               </div>
             </div>
           </div>
