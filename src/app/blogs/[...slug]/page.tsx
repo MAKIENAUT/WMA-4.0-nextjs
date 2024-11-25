@@ -33,14 +33,14 @@ export default async function page({
           </div>
           <div className="flex flex-col gap-4">
             <Image
-              src={data?.image.src}
+              src={data!.image.src}
               width={2000}
               height={2000}
               className={cn(
                 "aspect-[16/9] rounded-sm object-cover",
                 data?.image.position
               )}
-              alt={data?.image.alt}
+              alt={data!.image.alt}
             />
             <div className="inline-flex flex-col gap-4 lg:gap-8">
               <div className="inline-flex flex-col gap-2">
