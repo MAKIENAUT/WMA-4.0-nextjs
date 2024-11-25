@@ -214,25 +214,13 @@ NewsCarouselItem.displayName = "CarouselItem";
 
 const NewsCarouselDots = React.forwardRef<
   HTMLButtonElement,
-  React.ComponentProps<typeof Button>
->(({ className, variant = "carousel", size, ...props }, ref) => {
-  const { selectedIndex, scrollSnaps, onDotButtonClick } = useCarousel();
-
-  const CarouselDotName = (val: number) => {
-    let name: string;
-
-    if (val === 0) {
-      name = "News";
-      return name;
-    } else {
-      name = "Posts";
-      return name;
-    }
-  };
+  React.ComponentProps<typeof Button> & { data: { category: string }[] }
+>(({ data, className, variant = "carousel", size, ...props }, ref) => {
+  const { selectedIndex, onDotButtonClick } = useCarousel();
 
   return (
     <div className="flex border-b border-black">
-      {scrollSnaps.map((val, index) => (
+      {data.map((data, index) => (
         <Button
           key={index}
           ref={ref}
@@ -245,8 +233,8 @@ const NewsCarouselDots = React.forwardRef<
           onClick={() => onDotButtonClick(index)}
           {...props}
         >
-          {CarouselDotName(index)}
-          <span className="sr-only">Slide {index + 1}</span>
+          {data.category.slice(0, 1).toUpperCase() + data.category.slice(1)}
+          <span className="sr-only">{data.category}</span>
         </Button>
       ))}
     </div>
