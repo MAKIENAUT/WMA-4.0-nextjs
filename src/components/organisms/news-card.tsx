@@ -24,7 +24,7 @@ export default function NewsCard({ category, data }: NewsCardProps) {
       <div className="mb-2 aspect-[16/9] rounded-sm px-2 pt-2">
         <Image
           src={data.image.src}
-          alt={data.image?.alt}
+          alt={data.image.alt!}
           width={2000}
           height={2000}
           className={cn(
