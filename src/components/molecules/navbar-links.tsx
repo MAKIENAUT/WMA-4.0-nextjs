@@ -14,8 +14,8 @@ export default function NavbarLinks() {
 
 const MENU_ITEMS = [
   {
-    title: "News",
-    url: "/news",
+    title: "Blogs",
+    url: "/blogs",
   },
   {
     title: "About Us",

@@ -5,24 +5,26 @@ import { ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type NewsCardProps = {
+  category: string;
   data: {
+    url: string;
     title: string;
-    image: { src: string; position?: string };
+    image: { src: string; position?: string; alt: string };
     date: string;
     text: string[];
   };
 };
 
-export default function NewsCard({ data }: NewsCardProps) {
+export default function NewsCard({ category, data }: NewsCardProps) {
   return (
     <Link
       className="h-fit rounded-xl bg-white shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] ring-offset-white transition-all ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-wma-gold focus-visible:ring-offset-2 active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50"
-      href="#"
+      href={`/blogs/${category}/${data.url}`}
     >
       <div className="mb-2 aspect-[16/9] rounded-sm px-2 pt-2">
         <Image
           src={data.image.src}
-          alt="teacher"
+          alt={data.image.alt}
           width={2000}
           height={2000}
           className={cn(
