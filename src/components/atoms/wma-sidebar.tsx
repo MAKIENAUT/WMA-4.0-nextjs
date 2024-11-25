@@ -46,8 +46,8 @@ export default function WMASidebar() {
 
 const MENU_ITEMS = [
   {
-    title: "News",
-    url: "/news",
+    title: "Blogs",
+    url: "/blogs",
   },
   {
     title: "About Us",
