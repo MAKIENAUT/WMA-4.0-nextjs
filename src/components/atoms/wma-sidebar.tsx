@@ -12,8 +12,9 @@ import {
 } from "@/components/atoms/ui/sidebar";
 import { Button } from "./ui/button";
 import { X } from "lucide-react";
+import { NavbarProps } from "../organisms/navbar";
 
-export default function WMASidebar() {
+export default function WMASidebar({ datas }: NavbarProps) {
   const { toggleSidebar, isMobile } = useSidebar();
 
   if (isMobile) {
@@ -28,10 +29,10 @@ export default function WMASidebar() {
           <SidebarGroup>
             <SidebarGroupContent>
               <SidebarMenu>
-                {MENU_ITEMS.map((item) => (
-                  <SidebarMenuItem key={item.title}>
+                {datas.map((data) => (
+                  <SidebarMenuItem key={data.title}>
                     <SidebarMenuButton asChild variant="outline">
-                      <a href={item.url}>{item.title}</a>
+                      <a href={data.url}>{data.title}</a>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 ))}
@@ -43,18 +44,3 @@ export default function WMASidebar() {
     );
   }
 }
-
-const MENU_ITEMS = [
-  {
-    title: "Blogs",
-    url: "/blogs",
-  },
-  {
-    title: "About Us",
-    url: "/about-us",
-  },
-  {
-    title: "Services",
-    url: "/services",
-  },
-];
