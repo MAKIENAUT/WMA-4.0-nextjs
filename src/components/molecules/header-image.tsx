@@ -11,28 +11,27 @@ interface HeaderImageProps {
 export default function HeaderImage({
   imageSrc,
   alt,
-  className = "",
-  imageClassName = "",
+  className,
+  imageClassName,
 }: HeaderImageProps) {
   return (
     <div
       className={cn(
-        "relative hidden h-full",
-        "left-[-5rem] w-96",
-        "md:left-[-7rem] md:w-[450px]",
-        "lg:left-[-8rem] lg:w-[600px]",
-        "xl:left-[-9rem] xl:w-[700px]",
-        "min-[1440px]:w-[900px]",
+        "relative right-[5.5rem] hidden h-full max-h-[256px] w-[350px]",
         "sm:block",
+        "md:right-[7.5rem] md:max-h-[308px] md:w-[480px]",
+        "lg:right-[8.5rem] lg:max-h-[376px] lg:w-[630px]",
+        "xl:right-[9rem] xl:max-h-[488px] xl:w-[780px]",
+        "min-[1440px]:w-[900px]",
         className
       )}
     >
       <Image
         src={imageSrc}
         alt={alt}
-        fill
-        className={cn("object-cover object-left", imageClassName)}
-        sizes="(min-width: 1440px) 900px, (min-width: 1280px) 700px, (min-width: 1024px) 600px, (min-width: 768px) 450px, 384px"
+        width={2000}
+        height={2000}
+        className={cn("size-full object-cover object-center", imageClassName)}
       />
     </div>
   );
