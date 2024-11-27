@@ -1,9 +1,36 @@
 import Image from "next/image";
-import { DUMMY_DATAS } from "../dummy-data";
+import { DUMMY_DATAS } from "../../dummy-data";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/atoms/ui/button";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
+import { Metadata } from "next";
+import { notFound } from "next/navigation";
+
+type MetadataProps = {
+  params: Promise<{ categoryName: string; postName: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+};
+
+export async function generateMetadata({
+  params,
+}: MetadataProps): Promise<Metadata> {
+  const { categoryName, postName } = await params;
+  const data = DUMMY_DATAS.find(
+    (datas) => datas.category === categoryName
+  )?.posts.find((post) => post.url === postName) as DataProps;
+
+  if (!data) {
+    return {
+      title: "Blog not found",
+    };
+  }
+
+  return {
+    title: data.title + " | WMA",
+    description: data.text[0],
+  };
+}
 
 type DataProps = {
   url: string;
@@ -20,16 +47,20 @@ type DataProps = {
 export default async function page({
   params,
 }: {
-  params: Promise<{ slug: string[] }>;
+  params: Promise<{ categoryName: string; postName: string }>;
 }) {
-  const slugs = (await params).slug;
+  const { categoryName, postName } = await params;
   const data = DUMMY_DATAS.find(
-    (datas) => datas.category === slugs[0]
-  )?.posts.find((post) => post.url === slugs[1]) as DataProps;
+    (datas) => datas.category === categoryName
+  )?.posts.find((post) => post.url === postName) as DataProps;
+
+  if (!data) {
+    notFound();
+  }
 
   return (
-    <main className="mt-[56px] bg-white sm:mt-[72px] md:mt-[80px]">
-      <section className="mx-auto mb-32 max-w-[768px] px-4 pt-4 sm:px-8 lg:px-0">
+    <section className="bg-white">
+      <div className="mx-auto mb-32 max-w-[768px] px-4 pt-4 sm:px-8 lg:px-0">
         <div className="relative flex flex-col gap-4 lg:gap-0">
           <div className="inline-flex size-fit lg:sticky lg:top-[calc(80px+1rem)]">
             <Button
@@ -71,7 +102,7 @@ export default async function page({
             </div>
           </div>
         </div>
-      </section>
-    </main>
+      </div>
+    </section>
   );
 }
