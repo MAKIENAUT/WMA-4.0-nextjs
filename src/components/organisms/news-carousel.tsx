@@ -153,7 +153,7 @@ const NewsCarousel = React.forwardRef<
           ref={ref}
           onKeyDownCapture={handleKeyDown}
           className={cn(
-            "relative mx-auto mb-32 max-w-[1280px] px-4 md:px-8 lg:px-20",
+            "relative mx-auto max-w-[1280px] px-4 pb-32 md:px-8 lg:px-20",
             className
           )}
           role="region"

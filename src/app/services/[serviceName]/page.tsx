@@ -1,20 +1,16 @@
 import { Metadata } from "next";
-import HeroTemplate, { heroConfigs } from "@/components/templates/HeroTemplate";
+import HeroTemplate, {
+  heroConfigs,
+} from "@/components/templates/hero-template";
 import ServiceTemplate, {
   immigrationServices,
 } from "@/components/templates/ServiceTemplate";
 import { notFound } from "next/navigation";
 
-interface Params {
-  serviceName: string;
-}
-
-type SearchParams = { [key: string]: string | string[] | undefined };
-
 // Adjusting the Params and SearchParams to be Promises
 type Props = {
-  params: Promise<Params>;
-  searchParams: Promise<SearchParams>;
+  params: Promise<{ serviceName: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -53,13 +49,10 @@ export default async function ServicePage({ params }: Props) {
   const heroRoute = isValidHeroRoute(serviceName) ? serviceName : "home";
 
   return (
-    <main className="min-h-screen">
+    <>
       <HeroTemplate route={heroRoute} />
-
-      <div className="container mx-auto px-4 py-8">
-        <ServiceTemplate serviceName={serviceName} />
-      </div>
-    </main>
+      <ServiceTemplate serviceName={serviceName} />
+    </>
   );
 }
 

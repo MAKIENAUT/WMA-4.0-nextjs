@@ -9,10 +9,10 @@ import { DUMMY_DATAS } from "./dummy-data";
 
 export default function page() {
   return (
-    <main className="mt-[56px] bg-white sm:mt-[72px] md:mt-[80px]">
+    <section className="bg-white">
       <div className="mb-2 border-b border-wma-darkTeal">
         <h1 className="mx-auto max-w-[1280px] px-4 py-6 text-4xl font-bold sm:py-10 sm:text-5xl md:px-8 md:py-14 md:text-6xl lg:py-20 lg:text-7xl xl:px-20 xl:text-8xl">
-          WMA News
+          WMA Blogs
         </h1>
       </div>
       <NewsCarousel>
@@ -27,6 +27,6 @@ export default function page() {
           ))}
         </NewsCarouselContent>
       </NewsCarousel>
-    </main>
+    </section>
   );
 }

@@ -58,7 +58,7 @@ interface HeroTemplateProps {
 
 export default function HeroTemplate({
   route = "home",
-  className = "",
+  className,
   customConfig,
 }: HeroTemplateProps) {
   const config = customConfig || heroConfigs[route] || heroConfigs.home;
@@ -66,10 +66,8 @@ export default function HeroTemplate({
   return (
     <header
       className={cn(
-        "relative mb-8 overflow-hidden bg-gradient-to-r from-wma-darkTeal to-wma-teal",
-        "px-4",
-        "h-[200px] sm:h-[250px] md:h-[300px] lg:h-[380px] xl:h-[480px]",
-        "sm:mb-10 md:mb-12 lg:mb-16",
+        "relative flex min-h-[200px] items-center overflow-hidden bg-gradient-to-r from-wma-darkTeal to-wma-teal sm:bg-wma-darkTeal",
+        "mb-8 sm:mb-10 md:mb-12 lg:mb-16",
         className
       )}
     >

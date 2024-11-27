@@ -1,17 +1,23 @@
+import { cn } from "@/lib/utils";
 import React from "react";
 
 interface ContentCardProps {
-  children: React.ReactNode;
+  description: string;
   className?: string;
 }
 
 export default function ContentCard({
-  children,
-  className = "",
+  description,
+  className,
 }: ContentCardProps) {
   return (
-    <div className={`rounded-lg bg-teal-800 p-4 text-white ${className}`}>
-      {children}
+    <div
+      className={cn(
+        "rounded-lg bg-gradient-to-r from-wma-darkTeal to-wma-teal p-4 text-white md:px-8",
+        className
+      )}
+    >
+      <p className="lg:text-lg">{description}</p>
     </div>
   );
 }
