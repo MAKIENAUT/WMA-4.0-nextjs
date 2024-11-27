@@ -7,19 +7,17 @@ interface ProcessStepProps {
   description: string;
 }
 
-export default function ProcessStep({
+export default function ProcessSteps({
   stepNumber,
   title,
   description,
 }: ProcessStepProps) {
   return (
-    <div className="space-y-2">
-      <h3 className="text-xl font-medium text-teal-800">
+    <div className="flex flex-col gap-2 lg:gap-4">
+      <h3 className="text-xl font-semibold text-teal-800 sm:text-2xl lg:text-3xl">
         {stepNumber}. {title}
       </h3>
-      <ContentCard>
-        <p>{description}</p>
-      </ContentCard>
+      <ContentCard description={description} />
     </div>
   );
 }

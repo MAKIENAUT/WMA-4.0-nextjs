@@ -15,13 +15,15 @@ export default function CallToAction({
   onButtonClick,
 }: CallToActionProps) {
   return (
-    <footer className="mt-12 border-t border-gray-200 pt-8">
-      <div className="flex flex-col items-center space-y-6">
-        <div className="text-center">
-          <h4 className="text-xl font-semibold text-teal-800">{title}</h4>
-          <p className="mt-2 text-gray-600">{description}</p>
+    <footer className="border-t border-gray-200 pt-6">
+      <div className="flex flex-col items-center gap-6">
+        <div className="inline-flex flex-col gap-2 text-center">
+          <h4 className="text-2xl font-bold text-teal-800 sm:text-3xl lg:text-4xl">
+            {title}
+          </h4>
+          <p className="lg:text-lg">{description}</p>
         </div>
-        <Button variant="service" onClick={onButtonClick} className="w-2/5">
+        <Button variant="service" onClick={onButtonClick} className="">
           {buttonText}
         </Button>
       </div>

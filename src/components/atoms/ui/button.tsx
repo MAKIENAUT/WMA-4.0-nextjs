@@ -24,7 +24,7 @@ const buttonVariants = cva(
         carousel:
           "rounded-none border-b-2 border-transparent hover:text-wma-darkTeal text-[#7E7E7E] sm:text-lg xl:text-xl",
         service:
-          "bg-teal-800 text-white hover:bg-teal-900 transition-colors duration-200",
+          "bg-teal-800 text-white hover:bg-teal-900 transition-colors sm:text-lg lg:text-xl",
       },
       size: {
         default: "px-4 py-2",
