@@ -6,6 +6,12 @@ import {
   NewsCarouselItem,
 } from "@/components/organisms/news-carousel";
 import { DUMMY_DATAS } from "./dummy-data";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Blogs | WMA",
+  description: "",
+};
 
 export default function page() {
   return (

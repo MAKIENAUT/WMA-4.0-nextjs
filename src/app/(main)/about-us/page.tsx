@@ -1,5 +1,11 @@
 import AboutUsImage from "@/components/molecules/about-us-image";
 import { orelega_one } from "@/lib/fonts";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About Us | WMA",
+  description: "",
+};
 
 export default function AboutUs() {
   return (
