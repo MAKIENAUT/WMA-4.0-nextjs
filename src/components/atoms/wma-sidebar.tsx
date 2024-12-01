@@ -2,6 +2,7 @@
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarHeader,
@@ -11,8 +12,15 @@ import {
   useSidebar,
 } from "@/components/atoms/ui/sidebar";
 import { Button } from "./ui/button";
-import { X } from "lucide-react";
+import { ChevronUp, X } from "lucide-react";
 import { NavbarProps } from "../organisms/navbar";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "./ui/dropdown-menu";
+import Link from "next/link";
 
 export default function WMASidebar({ datas }: NavbarProps) {
   const { toggleSidebar, isMobile } = useSidebar();
@@ -32,7 +40,9 @@ export default function WMASidebar({ datas }: NavbarProps) {
                 {datas.map((data) => (
                   <SidebarMenuItem key={data.title}>
                     <SidebarMenuButton asChild variant="outline">
-                      <a href={data.url}>{data.title}</a>
+                      <Link href={data.url} onClick={toggleSidebar}>
+                        {data.title}
+                      </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 ))}
@@ -40,6 +50,31 @@ export default function WMASidebar({ datas }: NavbarProps) {
             </SidebarGroupContent>
           </SidebarGroup>
         </SidebarContent>
+        <SidebarFooter>
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton
+                asChild
+                variant="outline"
+                onClick={toggleSidebar}
+              >
+                <Link href="/login">Sign in</Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem className="hidden">
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <SidebarMenuButton>
+                    Username <ChevronUp className="ml-auto" />
+                  </SidebarMenuButton>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent side="top">
+                  <DropdownMenuItem>Sign out</DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </SidebarMenuItem>
+          </SidebarMenu>
+        </SidebarFooter>
       </Sidebar>
     );
   }

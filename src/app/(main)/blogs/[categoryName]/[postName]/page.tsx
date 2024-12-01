@@ -59,8 +59,8 @@ export default async function page({
   }
 
   return (
-    <section className="bg-white">
-      <div className="mx-auto mb-32 max-w-[768px] px-4 pt-4 sm:px-8 lg:px-0">
+    <section className="bg-white pb-32">
+      <div className="mx-auto max-w-[768px] px-4 pt-4 sm:px-8 lg:px-0">
         <div className="relative flex flex-col gap-4 lg:gap-0">
           <div className="inline-flex size-fit lg:sticky lg:top-[calc(80px+1rem)]">
             <Button

@@ -16,7 +16,7 @@ const buttonVariants = cva(
         outline:
           "ring-2 ring-transparent hover:ring-wma-teal hover:text-wma-teal active:ring-wma-darkTeal active:text-wma-darkTeal",
         secondary:
-          "bg-zinc-100 text-zinc-900 hover:bg-zinc-100/80 dark:bg-zinc-800 dark:text-zinc-50 dark:hover:bg-zinc-800/80",
+          "bg-wma-teal text-white hover:bg-wma-darkTeal active:bg-wma-teal",
         ghost: "hover:bg-zinc-100 hover:text-wma-darkTeal",
         link: "hover:text-wma-teal underline-offset-4 hover:underline active:text-wma-darkTeal font-medium",
         "link-footer":
