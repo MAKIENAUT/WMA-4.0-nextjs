@@ -1,11 +1,10 @@
 import { Metadata } from "next";
-import HeroTemplate, {
-  heroConfigs,
-} from "@/components/templates/hero-template";
+import HeroTemplate from "@/components/templates/hero-template";
 import ServiceTemplate, {
   immigrationServices,
 } from "@/components/templates/ServiceTemplate";
 import { notFound } from "next/navigation";
+import heroConfigs from "@/data/hero-config.json";
 
 // Adjusting the Params and SearchParams to be Promises
 type Props = {
@@ -41,7 +40,7 @@ export default async function ServicePage({ params }: Props) {
   // Type guard for valid hero route
   const isValidHeroRoute = (
     route: string
-  ): route is keyof typeof heroConfigs => {
+  ): route is keyof typeof heroConfigs.hero_config => {
     return route in heroConfigs;
   };
 

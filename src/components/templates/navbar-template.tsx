@@ -1,20 +1,6 @@
 import Navbar from "../organisms/navbar";
+import menu_items from "@/data/navbar-menu.json";
 
 export default function NavbarTemplate() {
-  return <Navbar datas={MENU_ITEMS} />;
+  return <Navbar data={menu_items.menu_items} />;
 }
-
-const MENU_ITEMS = [
-  {
-    title: "Blogs",
-    url: "/blogs",
-  },
-  {
-    title: "About Us",
-    url: "/about-us",
-  },
-  {
-    title: "Services",
-    url: "/services",
-  },
-];

@@ -5,7 +5,7 @@ import {
   NewsCarouselDots,
   NewsCarouselItem,
 } from "@/components/organisms/news-carousel";
-import { DUMMY_DATAS } from "./dummy-data";
+import blogs from "@/data/blogs.json";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -22,12 +22,12 @@ export default function page() {
         </h1>
       </div>
       <NewsCarousel>
-        <NewsCarouselDots data={DUMMY_DATAS} />
+        <NewsCarouselDots data={blogs.blogs} />
         <NewsCarouselContent>
-          {DUMMY_DATAS.map((datas, i) => (
+          {blogs.blogs.map((blog, i) => (
             <NewsCarouselItem key={i}>
-              {datas.posts.map((data, i) => (
-                <NewsCard key={i} data={data} category={datas.category} />
+              {blog.posts.map((post, i) => (
+                <NewsCard key={i} post={post} category={blog.category} />
               ))}
             </NewsCarouselItem>
           ))}

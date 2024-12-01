@@ -5,13 +5,13 @@ import WMASidebar from "../atoms/wma-sidebar";
 import NavbarLinks from "../molecules/navbar-links";
 
 export type NavbarProps = {
-  datas: {
+  data: {
     title: string;
     url: string;
   }[];
 };
 
-export default function Navbar({ datas }: NavbarProps) {
+export default function Navbar({ data }: NavbarProps) {
   return (
     <>
       <nav className="fixed top-0 z-50 flex w-screen items-center justify-between bg-white p-2 sm:px-8 sm:py-4 lg:max-h-20 xl:px-20">
@@ -24,10 +24,10 @@ export default function Navbar({ datas }: NavbarProps) {
             alt="WMA logo"
           />
         </Link>
-        <NavbarLinks datas={datas} />
+        <NavbarLinks data={data} />
         <SidebarTrigger />
       </nav>
-      <WMASidebar datas={datas} />
+      <WMASidebar data={data} />
     </>
   );
 }
