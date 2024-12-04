@@ -22,7 +22,7 @@ import {
 } from "./ui/dropdown-menu";
 import Link from "next/link";
 
-export default function WMASidebar({ datas }: NavbarProps) {
+export default function WMASidebar({ data }: NavbarProps) {
   const { toggleSidebar, isMobile } = useSidebar();
 
   if (isMobile) {
@@ -37,11 +37,11 @@ export default function WMASidebar({ datas }: NavbarProps) {
           <SidebarGroup>
             <SidebarGroupContent>
               <SidebarMenu>
-                {datas.map((data) => (
-                  <SidebarMenuItem key={data.title}>
+                {data.map((datum) => (
+                  <SidebarMenuItem key={datum.title}>
                     <SidebarMenuButton asChild variant="outline">
-                      <Link href={data.url} onClick={toggleSidebar}>
-                        {data.title}
+                      <Link href={datum.url} onClick={toggleSidebar}>
+                        {datum.title}
                       </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>

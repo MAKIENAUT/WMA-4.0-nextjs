@@ -1,3 +1,4 @@
+import { orelega_one } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
 
 interface HeaderTextProps {
@@ -16,7 +17,6 @@ export default function HeaderText({
   className,
   titleClassName,
   highlightClassName = "text-wma-gold",
-  fontFamily,
 }: HeaderTextProps) {
   return (
     <div
@@ -32,7 +32,7 @@ export default function HeaderText({
     >
       <h1
         className={cn(
-          fontFamily,
+          orelega_one.className,
           "max-w-[400px] text-4xl",
           "sm:text-5xl",
           "md:max-w-[420px] md:text-6xl",

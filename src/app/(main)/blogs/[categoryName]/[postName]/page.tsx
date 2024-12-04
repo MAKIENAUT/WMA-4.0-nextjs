@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { DUMMY_DATAS } from "../../dummy-data";
+import blogs from "@/data/blogs.json";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/atoms/ui/button";
 import { ChevronLeft } from "lucide-react";
@@ -16,9 +16,9 @@ export async function generateMetadata({
   params,
 }: MetadataProps): Promise<Metadata> {
   const { categoryName, postName } = await params;
-  const data = DUMMY_DATAS.find(
-    (datas) => datas.category === categoryName
-  )?.posts.find((post) => post.url === postName) as DataProps;
+  const data = blogs.blogs
+    .find((data) => data.category === categoryName)
+    ?.posts.find((post) => post.url === postName) as DataProps;
 
   if (!data) {
     return {
@@ -50,9 +50,9 @@ export default async function page({
   params: Promise<{ categoryName: string; postName: string }>;
 }) {
   const { categoryName, postName } = await params;
-  const data = DUMMY_DATAS.find(
-    (datas) => datas.category === categoryName
-  )?.posts.find((post) => post.url === postName) as DataProps;
+  const data = blogs.blogs
+    .find((data) => data.category === categoryName)
+    ?.posts.find((post) => post.url === postName) as DataProps;
 
   if (!data) {
     notFound();
@@ -75,16 +75,14 @@ export default async function page({
             </Button>
           </div>
           <div className="flex flex-col gap-4">
-            <Image
-              src={data.image.src}
-              width={2000}
-              height={2000}
-              className={cn(
-                "aspect-[16/9] rounded-sm object-cover",
-                data.image.position
-              )}
-              alt={data.image.alt}
-            />
+            <div className="relative aspect-[16/9] w-full">
+              <Image
+                src={data.image.src}
+                fill
+                className={cn("rounded-sm object-cover", data.image.position)}
+                alt={data.image.alt}
+              />
+            </div>
             <div className="inline-flex flex-col gap-4 lg:gap-8">
               <div className="inline-flex flex-col gap-2">
                 <p className="text-sm font-semibold text-wma-teal">

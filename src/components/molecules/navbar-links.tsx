@@ -9,13 +9,13 @@ import {
 import { NavbarProps } from "../organisms/navbar";
 import Link from "next/link";
 
-export default function NavbarLinks({ datas }: NavbarProps) {
+export default function NavbarLinks({ data }: NavbarProps) {
   return (
     <ul className="hidden md:inline-flex md:gap-4">
-      {datas.map((data) => (
-        <li key={data.title}>
+      {data.map((datum) => (
+        <li key={datum.title}>
           <Button asChild variant="link">
-            <Link href={data.url}>{data.title}</Link>
+            <Link href={datum.url}>{datum.title}</Link>
           </Button>
         </li>
       ))}
