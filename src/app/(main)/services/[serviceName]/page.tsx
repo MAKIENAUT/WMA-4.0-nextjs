@@ -41,7 +41,7 @@ export default async function ServicePage({ params }: Props) {
   const isValidHeroRoute = (
     route: string
   ): route is keyof typeof heroConfigs.hero_config => {
-    return route in heroConfigs;
+    return route in heroConfigs.hero_config;
   };
 
   // Set the hero route, defaulting to 'home' if not found

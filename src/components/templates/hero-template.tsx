@@ -12,13 +12,13 @@ export interface HeroConfig {
 }
 
 interface HeroTemplateProps {
-  route?: keyof typeof hero_configs.hero_config;
+  route: keyof typeof hero_configs.hero_config;
   className?: string;
   customConfig?: HeroConfig;
 }
 
 export default function HeroTemplate({
-  route = "home",
+  route,
   className,
   customConfig,
 }: HeroTemplateProps) {
