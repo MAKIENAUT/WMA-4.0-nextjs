@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import HeaderGroup from "../molecules/header-group";
 import HeaderImage from "../molecules/header-image";
 import HeaderText from "../molecules/header-text";
-import hero_configs from "@/data/hero-config.json";
+import { hero_config } from "@/data/hero-config.json";
 
 export interface HeroConfig {
   title: string;
@@ -12,7 +12,7 @@ export interface HeroConfig {
 }
 
 interface HeroTemplateProps {
-  route: keyof typeof hero_configs.hero_config;
+  route: keyof typeof hero_config;
   className?: string;
   customConfig?: HeroConfig;
 }
@@ -22,10 +22,7 @@ export default function HeroTemplate({
   className,
   customConfig,
 }: HeroTemplateProps) {
-  const config =
-    customConfig ||
-    hero_configs.hero_config[route] ||
-    hero_configs.hero_config.home;
+  const config = customConfig || hero_config[route] || hero_config.home;
 
   return (
     <header
