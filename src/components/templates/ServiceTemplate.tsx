@@ -18,5 +18,5 @@ export default function ServiceTemplate({ serviceName }: ServiceTemplateProps) {
     return null;
   }
 
-  return <ServiceProcess serviceData={serviceData} />;
+  return <ServiceProcess serviceData={serviceData} serviceName={serviceName} />;
 }
