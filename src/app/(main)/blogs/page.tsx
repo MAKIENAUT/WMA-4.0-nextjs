@@ -1,11 +1,11 @@
 import NewsCard from "@/components/organisms/news-card";
 import {
-  NewsCarousel,
-  NewsCarouselContent,
-  NewsCarouselDots,
-  NewsCarouselItem,
-} from "@/components/organisms/news-carousel";
-import blogs from "@/data/blogs.json";
+  Carousel,
+  CarouselContent,
+  BlogsCarouselDots,
+  CarouselItem,
+} from "@/components/organisms/carousel";
+import { blogs } from "@/data/blogs.json";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -21,18 +21,18 @@ export default function page() {
           WMA Blogs
         </h1>
       </div>
-      <NewsCarousel>
-        <NewsCarouselDots data={blogs.blogs} />
-        <NewsCarouselContent>
-          {blogs.blogs.map((blog, i) => (
-            <NewsCarouselItem key={i}>
+      <Carousel>
+        <BlogsCarouselDots data={blogs} />
+        <CarouselContent>
+          {blogs.map((blog, i) => (
+            <CarouselItem key={i}>
               {blog.posts.map((post, i) => (
                 <NewsCard key={i} post={post} category={blog.category} />
               ))}
-            </NewsCarouselItem>
+            </CarouselItem>
           ))}
-        </NewsCarouselContent>
-      </NewsCarousel>
+        </CarouselContent>
+      </Carousel>
     </section>
   );
 }

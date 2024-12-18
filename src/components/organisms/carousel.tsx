@@ -40,7 +40,7 @@ function useCarousel() {
   return context;
 }
 
-const NewsCarousel = React.forwardRef<
+const Carousel = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement> & CarouselProps
 >(
@@ -166,9 +166,9 @@ const NewsCarousel = React.forwardRef<
     );
   }
 );
-NewsCarousel.displayName = "Carousel";
+Carousel.displayName = "Carousel";
 
-const NewsCarouselContent = React.forwardRef<
+const CarouselContent = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => {
@@ -188,9 +188,9 @@ const NewsCarouselContent = React.forwardRef<
     </div>
   );
 });
-NewsCarouselContent.displayName = "CarouselContent";
+CarouselContent.displayName = "CarouselContent";
 
-const NewsCarouselItem = React.forwardRef<
+const CarouselItem = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => {
@@ -210,9 +210,9 @@ const NewsCarouselItem = React.forwardRef<
     />
   );
 });
-NewsCarouselItem.displayName = "CarouselItem";
+CarouselItem.displayName = "CarouselItem";
 
-const NewsCarouselDots = React.forwardRef<
+const BlogsCarouselDots = React.forwardRef<
   HTMLButtonElement,
   React.ComponentProps<typeof Button> & { data: { category: string }[] }
 >(({ data, className, variant = "carousel", size, ...props }, ref) => {
@@ -240,12 +240,45 @@ const NewsCarouselDots = React.forwardRef<
     </div>
   );
 });
-NewsCarouselDots.displayName = "CarouselDots";
+BlogsCarouselDots.displayName = "BlogCarouselDots";
+
+const ServiceCarouselDots = React.forwardRef<
+  HTMLButtonElement,
+  React.ComponentProps<typeof Button> & {
+    data: { title: string }[];
+  }
+>(({ data, className, variant = "carousel", size, ...props }, ref) => {
+  const { selectedIndex, onDotButtonClick } = useCarousel();
+
+  return (
+    <div className="flex border-b border-black">
+      {data.map((data, index) => (
+        <Button
+          key={index}
+          ref={ref}
+          variant={variant}
+          size={size}
+          className={cn(
+            index === selectedIndex && "border-wma-darkTeal text-wma-darkTeal",
+            className
+          )}
+          onClick={() => onDotButtonClick(index)}
+          {...props}
+        >
+          {data.title.slice(0, 1).toUpperCase() + data.title.slice(1)}
+          <span className="sr-only">{data.title}</span>
+        </Button>
+      ))}
+    </div>
+  );
+});
+ServiceCarouselDots.displayName = "ServiceCarouselDots";
 
 export {
   type CarouselApi,
-  NewsCarouselContent,
-  NewsCarouselItem,
-  NewsCarousel,
-  NewsCarouselDots,
+  CarouselContent,
+  CarouselItem,
+  Carousel,
+  BlogsCarouselDots,
+  ServiceCarouselDots,
 };

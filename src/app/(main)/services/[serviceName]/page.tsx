@@ -1,20 +1,25 @@
 import { Metadata } from "next";
 import HeroTemplate from "@/components/templates/hero-template";
-import ServiceTemplate, {
-  immigrationServices,
-} from "@/components/templates/ServiceTemplate";
+import ServiceTemplate from "@/components/templates/ServiceTemplate";
 import { notFound } from "next/navigation";
 import heroConfigs from "@/data/hero-config.json";
+import { individual_services } from "@/data/individual-service.json";
 
 // Adjusting the Params and SearchParams to be Promises
 type Props = {
-  params: Promise<{ serviceName: string }>;
+  params: Promise<{
+    serviceName:
+      | "study-and-exchange"
+      | "web-development"
+      | "family-based"
+      | "temporary-employment";
+  }>;
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const resolvedParams = await params;
-  const service = immigrationServices[resolvedParams.serviceName];
+  const service = individual_services[resolvedParams.serviceName];
 
   if (!service) {
     return {
@@ -33,7 +38,7 @@ export default async function ServicePage({ params }: Props) {
   const { serviceName } = resolvedParams;
 
   // Check if service exists
-  if (!immigrationServices[serviceName]) {
+  if (!individual_services[serviceName]) {
     notFound();
   }
 
@@ -41,7 +46,7 @@ export default async function ServicePage({ params }: Props) {
   const isValidHeroRoute = (
     route: string
   ): route is keyof typeof heroConfigs.hero_config => {
-    return route in heroConfigs;
+    return route in heroConfigs.hero_config;
   };
 
   // Set the hero route, defaulting to 'home' if not found
@@ -57,7 +62,7 @@ export default async function ServicePage({ params }: Props) {
 
 // Generate static paths for all known services
 export async function generateStaticParams() {
-  return Object.keys(immigrationServices).map((service) => ({
+  return Object.keys(individual_services).map((service) => ({
     serviceName: service,
   }));
 }
