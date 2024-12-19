@@ -21,16 +21,46 @@ import FormContent from "../molecules/form-content";
 import FormTitle from "../molecules/form-title";
 import InputGroup from "../molecules/input-group";
 import FormWrapper from "../molecules/form-wrapper";
+import { useToast } from "@/hooks/use-toast";
+import { redirect } from "next/navigation";
 
 export default function SignupForm({ variant }: { variant: "signup" }) {
+  const { toast } = useToast();
   const form = useForm<InferredSignupSchemaType>({
     resolver: zodResolver(signupSchema),
     defaultValues: SIGNUP_DEFAULT_VALUES,
     mode: "onBlur",
   });
 
-  function onSubmit(values: InferredSignupSchemaType) {
-    console.log({ values });
+  async function onSubmit(values: InferredSignupSchemaType) {
+    try {
+      const response = await fetch(
+        "http://localhost:3001/api/v1/auth/register",
+        {
+          method: "POST",
+          body: JSON.stringify({
+            name: values.full_name,
+            email: values.email,
+            password: values.password,
+          }),
+          headers: {
+            "Content-Type": "application/json;charset=utf-8",
+          },
+        }
+      );
+      if (response.status === 409) {
+        const error = await response.json();
+        toast({ title: error.error, variant: "destructive" });
+      }
+
+      if (response.status === 201) {
+        const data = await response.json();
+        toast({ title: data.message });
+        setTimeout(() => redirect("/"), 1000);
+      }
+    } catch (err) {
+      console.error("An error happened: " + err);
+    }
   }
 
   return (
@@ -41,13 +71,13 @@ export default function SignupForm({ variant }: { variant: "signup" }) {
           <FormWrapper onSubmit={form.handleSubmit(onSubmit)}>
             <InputGroup>
               <FormField
-                name="username"
+                name="full_name"
                 control={form.control}
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Username:</FormLabel>
+                    <FormLabel>Full Name:</FormLabel>
                     <FormControl>
-                      <Input placeholder="Enter your username" {...field} />
+                      <Input placeholder="Enter your Full Name" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

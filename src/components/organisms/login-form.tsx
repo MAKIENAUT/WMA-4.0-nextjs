@@ -21,6 +21,8 @@ import FormContent from "../molecules/form-content";
 import FormTitle from "../molecules/form-title";
 import InputGroup from "../molecules/input-group";
 import FormWrapper from "../molecules/form-wrapper";
+import { toast } from "@/hooks/use-toast";
+import { redirect } from "next/navigation";
 
 export default function LoginForm({ variant }: { variant: "login" }) {
   const form = useForm<InferredLoginSchemaType>({
@@ -29,8 +31,31 @@ export default function LoginForm({ variant }: { variant: "login" }) {
     mode: "onBlur",
   });
 
-  const onSubmit = (values: InferredLoginSchemaType) => {
-    console.log({ values });
+  const onSubmit = async (values: InferredLoginSchemaType) => {
+    try {
+      const response = await fetch("http://localhost:3001/api/v1/auth/login", {
+        method: "POST",
+        body: JSON.stringify({
+          email: values.email,
+          password: values.password,
+        }),
+        headers: {
+          "Content-Type": "application/json;charset=utf-8",
+        },
+      });
+      if (response.status === 401) {
+        const error = await response.json();
+        toast({ title: error.error, variant: "destructive" });
+      }
+
+      if (response.status === 200) {
+        const data = await response.json();
+        toast({ title: data.message });
+        setTimeout(() => redirect("/"), 1000);
+      }
+    } catch (err) {
+      console.error("An error happened: " + err);
+    }
   };
 
   return (
