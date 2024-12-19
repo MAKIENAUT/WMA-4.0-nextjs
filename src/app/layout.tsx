@@ -1,3 +1,4 @@
+import { Toaster } from "@/components/atoms/ui/toaster";
 import "./globals.css";
 import { dm_sans } from "@/lib/fonts";
 
@@ -12,6 +13,7 @@ export default function RootLayout({
         className={`${dm_sans.className} overflow-x-hidden bg-background antialiased`}
       >
         {children}
+        <Toaster />
       </body>
     </html>
   );
