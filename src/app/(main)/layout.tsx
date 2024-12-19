@@ -16,10 +16,8 @@ export default function RootLayout({
   return (
     <SidebarProvider defaultOpen={false}>
       <NavbarTemplate />
-      <main className="mt-[56px] sm:mt-[72px] md:mt-[80px]">
-        {children}
-        <Footer />
-      </main>
+      <main className="mt-[56px] sm:mt-[72px] md:mt-[80px]">{children}</main>
+      <Footer />
     </SidebarProvider>
   );
 }

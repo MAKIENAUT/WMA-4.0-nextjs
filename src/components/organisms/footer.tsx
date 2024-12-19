@@ -23,8 +23,16 @@ function FooterGroup({
 function FooterLogos() {
   const LOGOS = [
     { alt: "WMC logo", src: "/wmc-logo.png", className: "" },
-    { alt: "USCIS logo", src: "/USCIS-logo.png", className: "bg-white p-2" },
-    { alt: "DepEd logo", src: "/DepEd-logo.png", className: "bg-white p-2" },
+    {
+      alt: "USCIS logo",
+      src: "/USCIS-logo.png",
+      className: "bg-white p-2 rounded",
+    },
+    {
+      alt: "DepEd logo",
+      src: "/us-deped-logo.svg",
+      className: "bg-white p-2 rounded",
+    },
     { alt: "DOL logo", src: "/DOL-logo.svg", className: "" },
   ];
 
