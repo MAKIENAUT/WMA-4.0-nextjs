@@ -1,5 +1,5 @@
 import Image from "next/image";
-import blogs from "@/data/blogs.json";
+import { blogs } from "@/data/blogs";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/atoms/ui/button";
 import { ChevronLeft } from "lucide-react";
@@ -16,7 +16,7 @@ export async function generateMetadata({
   params,
 }: MetadataProps): Promise<Metadata> {
   const { categoryName, postName } = await params;
-  const data = blogs.blogs
+  const data = blogs
     .find((data) => data.category === categoryName)
     ?.posts.find((post) => post.url === postName) as DataProps;
 
@@ -50,7 +50,7 @@ export default async function page({
   params: Promise<{ categoryName: string; postName: string }>;
 }) {
   const { categoryName, postName } = await params;
-  const data = blogs.blogs
+  const data = blogs
     .find((data) => data.category === categoryName)
     ?.posts.find((post) => post.url === postName) as DataProps;
 

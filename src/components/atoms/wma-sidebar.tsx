@@ -21,10 +21,13 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import Link from "next/link";
+import { userQueryOption } from "@/lib/queries";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { Suspense } from "react";
 
 export default function WMASidebar({ data }: NavbarProps) {
   const { toggleSidebar, isMobile } = useSidebar();
-
+  const { data: user } = useSuspenseQuery(userQueryOption);
   if (isMobile) {
     return (
       <Sidebar side="right">
@@ -51,29 +54,34 @@ export default function WMASidebar({ data }: NavbarProps) {
           </SidebarGroup>
         </SidebarContent>
         <SidebarFooter>
-          <SidebarMenu>
-            <SidebarMenuItem>
-              <SidebarMenuButton
-                asChild
-                variant="outline"
-                onClick={toggleSidebar}
-              >
-                <Link href="/login">Sign in</Link>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem className="hidden">
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <SidebarMenuButton>
-                    Username <ChevronUp className="ml-auto" />
+          <Suspense fallback={<div>loading...</div>}>
+            <SidebarMenu>
+              {user.error ? (
+                <SidebarMenuItem>
+                  <SidebarMenuButton
+                    asChild
+                    variant="outline"
+                    onClick={toggleSidebar}
+                  >
+                    <Link href="/login">Sign in</Link>
                   </SidebarMenuButton>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent side="top">
-                  <DropdownMenuItem>Sign out</DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </SidebarMenuItem>
-          </SidebarMenu>
+                </SidebarMenuItem>
+              ) : (
+                <SidebarMenuItem>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <SidebarMenuButton>
+                        {user.name} <ChevronUp className="ml-auto" />
+                      </SidebarMenuButton>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent side="top">
+                      <DropdownMenuItem>Sign out</DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </SidebarMenuItem>
+              )}
+            </SidebarMenu>
+          </Suspense>
         </SidebarFooter>
       </Sidebar>
     );

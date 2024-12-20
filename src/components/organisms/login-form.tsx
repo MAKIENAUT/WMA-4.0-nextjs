@@ -21,6 +21,10 @@ import FormContent from "../molecules/form-content";
 import FormTitle from "../molecules/form-title";
 import InputGroup from "../molecules/input-group";
 import FormWrapper from "../molecules/form-wrapper";
+import { toast } from "@/hooks/use-toast";
+import { redirect } from "next/navigation";
+import { useMutation } from "@tanstack/react-query";
+import { login } from "@/utils/login";
 
 export default function LoginForm({ variant }: { variant: "login" }) {
   const form = useForm<InferredLoginSchemaType>({
@@ -29,9 +33,21 @@ export default function LoginForm({ variant }: { variant: "login" }) {
     mode: "onBlur",
   });
 
-  const onSubmit = (values: InferredLoginSchemaType) => {
-    console.log({ values });
-  };
+  const loginMutation = useMutation({
+    mutationFn: (values: InferredLoginSchemaType) =>
+      login({ email: values.email, password: values.password }),
+    onSuccess: (data: { message: string }) => {
+      toast({ title: data.message });
+      setTimeout(() => redirect("/"), 1000);
+    },
+    onError: (err) => {
+      toast({ title: err.message, variant: "destructive" });
+    },
+  });
+
+  function onSubmit(values: InferredLoginSchemaType) {
+    loginMutation.mutate(values);
+  }
 
   return (
     <>
@@ -71,8 +87,12 @@ export default function LoginForm({ variant }: { variant: "login" }) {
                 )}
               />
             </InputGroup>
-            <Button type="submit" variant="secondary">
-              Log in
+            <Button
+              type="submit"
+              variant="secondary"
+              disabled={loginMutation.isPending}
+            >
+              {loginMutation.isPending ? "Logging in" : "Log in"}
             </Button>
           </FormWrapper>
         </Form>

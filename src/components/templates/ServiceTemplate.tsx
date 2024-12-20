@@ -1,7 +1,7 @@
 // ServiceTemplate.tsx
 import React from "react";
 import ServiceProcess from "../organisms/service-details";
-import { individual_services } from "@/data/individual-service.json";
+import { individual_services } from "@/data/individual-service";
 
 interface ServiceTemplateProps {
   serviceName:
