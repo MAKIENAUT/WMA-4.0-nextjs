@@ -21,46 +21,36 @@ import FormContent from "../molecules/form-content";
 import FormTitle from "../molecules/form-title";
 import InputGroup from "../molecules/input-group";
 import FormWrapper from "../molecules/form-wrapper";
-import { useToast } from "@/hooks/use-toast";
+import { toast } from "@/hooks/use-toast";
 import { redirect } from "next/navigation";
+import { useMutation } from "@tanstack/react-query";
+import { signup } from "@/utils/signup";
 
 export default function SignupForm({ variant }: { variant: "signup" }) {
-  const { toast } = useToast();
   const form = useForm<InferredSignupSchemaType>({
     resolver: zodResolver(signupSchema),
     defaultValues: SIGNUP_DEFAULT_VALUES,
     mode: "onBlur",
   });
 
-  async function onSubmit(values: InferredSignupSchemaType) {
-    try {
-      const response = await fetch(
-        "http://localhost:3001/api/v1/auth/register",
-        {
-          method: "POST",
-          body: JSON.stringify({
-            name: values.full_name,
-            email: values.email,
-            password: values.password,
-          }),
-          headers: {
-            "Content-Type": "application/json;charset=utf-8",
-          },
-        }
-      );
-      if (response.status === 409) {
-        const error = await response.json();
-        toast({ title: error.error, variant: "destructive" });
-      }
+  const signupMutation = useMutation({
+    mutationFn: (values: InferredSignupSchemaType) =>
+      signup({
+        name: values.full_name,
+        email: values.email,
+        password: values.password,
+      }),
+    onSuccess: (data: { message: string }) => {
+      toast({ title: data.message });
+      setTimeout(() => redirect("/"), 1000);
+    },
+    onError: (err) => {
+      toast({ title: err.message, variant: "destructive" });
+    },
+  });
 
-      if (response.status === 201) {
-        const data = await response.json();
-        toast({ title: data.message });
-        setTimeout(() => redirect("/"), 1000);
-      }
-    } catch (err) {
-      console.error("An error happened: " + err);
-    }
+  async function onSubmit(values: InferredSignupSchemaType) {
+    signupMutation.mutate(values);
   }
 
   return (
@@ -131,8 +121,12 @@ export default function SignupForm({ variant }: { variant: "signup" }) {
                 )}
               />
             </InputGroup>
-            <Button type="submit" variant="secondary">
-              Sign Up
+            <Button
+              type="submit"
+              variant="secondary"
+              disabled={signupMutation.isPending}
+            >
+              {signupMutation.isPending ? "Signing up" : "Sign Up"}
             </Button>
           </FormWrapper>
         </Form>

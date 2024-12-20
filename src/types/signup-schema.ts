@@ -24,8 +24,13 @@ export const signupSchema = z
       .string()
       .min(MIN_USERNAME_LENGTH, "Username must have at least 3 characters")
       .max(MAX_USERNAME_LENGTH, "Username can only have at max 30 characters")
-      .trim(),
-    email: z.string().email({ message: "Invalid email address" }).trim(),
+      .trim()
+      .toLowerCase(),
+    email: z
+      .string()
+      .email({ message: "Invalid email address" })
+      .trim()
+      .toLowerCase(),
     password: passwordSchema,
     confirmPassword: z.string(),
   })
