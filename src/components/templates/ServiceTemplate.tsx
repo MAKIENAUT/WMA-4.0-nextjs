@@ -1,7 +1,7 @@
 // ServiceTemplate.tsx
 import React from "react";
 import ServiceProcess from "../organisms/service-details";
-import { individual_services } from "@/data/individual-service.json";
+import individualServices from "@/data/individual-service.json";
 
 interface ServiceTemplateProps {
   serviceName:
@@ -12,7 +12,7 @@ interface ServiceTemplateProps {
 }
 
 export default function ServiceTemplate({ serviceName }: ServiceTemplateProps) {
-  const serviceData = individual_services[serviceName];
+  const serviceData = individualServices.individual_services[serviceName];
 
   if (!serviceData) {
     return null;

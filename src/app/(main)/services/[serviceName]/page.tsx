@@ -3,7 +3,7 @@ import HeroTemplate from "@/components/templates/hero-template";
 import ServiceTemplate from "@/components/templates/ServiceTemplate";
 import { notFound } from "next/navigation";
 import heroConfigs from "@/data/hero-config.json";
-import { individual_services } from "@/data/individual-service.json";
+import individualServices from "@/data/individual-service.json";
 
 // Adjusting the Params and SearchParams to be Promises
 type Props = {
@@ -19,7 +19,8 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const resolvedParams = await params;
-  const service = individual_services[resolvedParams.serviceName];
+  const service =
+    individualServices.individual_services[resolvedParams.serviceName];
 
   if (!service) {
     return {
@@ -38,7 +39,7 @@ export default async function ServicePage({ params }: Props) {
   const { serviceName } = resolvedParams;
 
   // Check if service exists
-  if (!individual_services[serviceName]) {
+  if (!individualServices.individual_services[serviceName]) {
     notFound();
   }
 
@@ -62,7 +63,7 @@ export default async function ServicePage({ params }: Props) {
 
 // Generate static paths for all known services
 export async function generateStaticParams() {
-  return Object.keys(individual_services).map((service) => ({
+  return Object.keys(individualServices.individual_services).map((service) => ({
     serviceName: service,
   }));
 }

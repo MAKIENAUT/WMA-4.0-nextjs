@@ -5,7 +5,7 @@ import {
   BlogsCarouselDots,
   CarouselItem,
 } from "@/components/organisms/carousel";
-import { blogs } from "@/data/blogs.json";
+import blog from "@/data/blogs.json";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -22,9 +22,9 @@ export default function page() {
         </h1>
       </div>
       <Carousel>
-        <BlogsCarouselDots data={blogs} />
+        <BlogsCarouselDots data={blog.blogs} />
         <CarouselContent>
-          {blogs.map((blog, i) => (
+          {blog.blogs.map((blog, i) => (
             <CarouselItem key={i}>
               {blog.posts.map((post, i) => (
                 <NewsCard key={i} post={post} category={blog.category} />
