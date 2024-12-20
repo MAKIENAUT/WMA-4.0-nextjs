@@ -2,8 +2,8 @@ import { Metadata } from "next";
 import HeroTemplate from "@/components/templates/hero-template";
 import ServiceTemplate from "@/components/templates/ServiceTemplate";
 import { notFound } from "next/navigation";
-import heroConfigs from "@/data/hero-config.json";
-import individualServices from "@/data/individual-service.json";
+import { hero_config } from "@/data/hero-config";
+import { individual_services } from "@/data/individual-service";
 
 // Adjusting the Params and SearchParams to be Promises
 type Props = {
@@ -19,8 +19,7 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const resolvedParams = await params;
-  const service =
-    individualServices.individual_services[resolvedParams.serviceName];
+  const service = individual_services[resolvedParams.serviceName];
 
   if (!service) {
     return {
@@ -39,15 +38,15 @@ export default async function ServicePage({ params }: Props) {
   const { serviceName } = resolvedParams;
 
   // Check if service exists
-  if (!individualServices.individual_services[serviceName]) {
+  if (!individual_services[serviceName]) {
     notFound();
   }
 
   // Type guard for valid hero route
   const isValidHeroRoute = (
     route: string
-  ): route is keyof typeof heroConfigs.hero_config => {
-    return route in heroConfigs.hero_config;
+  ): route is keyof typeof hero_config => {
+    return route in hero_config;
   };
 
   // Set the hero route, defaulting to 'home' if not found
@@ -63,7 +62,7 @@ export default async function ServicePage({ params }: Props) {
 
 // Generate static paths for all known services
 export async function generateStaticParams() {
-  return Object.keys(individualServices.individual_services).map((service) => ({
+  return Object.keys(individual_services).map((service) => ({
     serviceName: service,
   }));
 }
