@@ -1,3 +1,4 @@
+"use client";
 import { ChevronDown } from "lucide-react";
 import { Button } from "../atoms/ui/button";
 import {
@@ -8,8 +9,12 @@ import {
 } from "../atoms/ui/dropdown-menu";
 import { NavbarProps } from "../organisms/navbar";
 import Link from "next/link";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { userQueryOption } from "@/lib/queries";
+import { Suspense } from "react";
 
 export default function NavbarLinks({ data }: NavbarProps) {
+  const { data: user } = useSuspenseQuery(userQueryOption);
   return (
     <ul className="hidden md:inline-flex md:gap-4">
       {data.map((datum) => (
@@ -19,23 +24,28 @@ export default function NavbarLinks({ data }: NavbarProps) {
           </Button>
         </li>
       ))}
-      <li>
-        <Button variant="link">
-          <Link href="/login">Sign in</Link>
-        </Button>
-      </li>
-      <li className="hidden">
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="font-medium">
-              Account <ChevronDown />
+      <Suspense fallback={<div>loading...</div>}>
+        {user.error ? (
+          <li>
+            <Button variant="link" asChild>
+              <Link href="/login">Sign in</Link>
             </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent side="bottom">
-            <DropdownMenuItem>Sign out</DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      </li>
+          </li>
+        ) : (
+          <li>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" className="font-medium">
+                  {user.name} <ChevronDown />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent side="bottom">
+                <DropdownMenuItem>Sign out</DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </li>
+        )}
+      </Suspense>
     </ul>
   );
 }
