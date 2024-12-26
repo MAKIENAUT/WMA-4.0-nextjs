@@ -1,7 +1,9 @@
-import { getUser } from "@/utils/get-user";
 import { queryOptions } from "@tanstack/react-query";
 
-export const userQueryOption = queryOptions({
+export const userQueryOptions = queryOptions({
   queryKey: ["user"],
-  queryFn: getUser,
+  queryFn: async () => {
+    const response = await fetch("http://localhost:3001/api/v1/auth/me");
+    return response.json();
+  },
 });

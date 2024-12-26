@@ -21,13 +21,13 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import Link from "next/link";
-import { userQueryOption } from "@/lib/queries";
+import { userQueryOptions } from "@/lib/queries";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { Suspense } from "react";
 
 export default function WMASidebar({ data }: NavbarProps) {
   const { toggleSidebar, isMobile } = useSidebar();
-  const { data: user } = useSuspenseQuery(userQueryOption);
+  const { data: user } = useSuspenseQuery(userQueryOptions);
   if (isMobile) {
     return (
       <Sidebar side="right">

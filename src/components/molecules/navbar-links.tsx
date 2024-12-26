@@ -10,11 +10,11 @@ import {
 import { NavbarProps } from "../organisms/navbar";
 import Link from "next/link";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { userQueryOption } from "@/lib/queries";
+import { userQueryOptions } from "@/lib/queries";
 import { Suspense } from "react";
 
 export default function NavbarLinks({ data }: NavbarProps) {
-  const { data: user } = useSuspenseQuery(userQueryOption);
+  const { data: user } = useSuspenseQuery(userQueryOptions);
   return (
     <ul className="hidden md:inline-flex md:gap-4">
       {data.map((datum) => (

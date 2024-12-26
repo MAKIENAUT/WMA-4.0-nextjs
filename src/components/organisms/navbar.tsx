@@ -4,7 +4,7 @@ import { SidebarTrigger } from "../atoms/ui/sidebar";
 import WMASidebar from "../atoms/wma-sidebar";
 import NavbarLinks from "../molecules/navbar-links";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
-import { userQueryOption } from "@/lib/queries";
+import { userQueryOptions } from "@/lib/queries";
 import { getQueryClient } from "@/features/react-query/components/get-query-client";
 
 export type NavbarProps = {
@@ -16,7 +16,7 @@ export type NavbarProps = {
 
 export default function Navbar({ data }: NavbarProps) {
   const queryClient = getQueryClient();
-  queryClient.prefetchQuery(userQueryOption);
+  queryClient.prefetchQuery(userQueryOptions);
   return (
     <>
       <HydrationBoundary state={dehydrate(queryClient)}>

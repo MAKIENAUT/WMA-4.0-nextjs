@@ -22,11 +22,11 @@ import FormTitle from "../molecules/form-title";
 import InputGroup from "../molecules/input-group";
 import FormWrapper from "../molecules/form-wrapper";
 import { toast } from "@/hooks/use-toast";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
-import { signup } from "@/utils/signup";
 
 export default function SignupForm({ variant }: { variant: "signup" }) {
+  const router = useRouter();
   const form = useForm<InferredSignupSchemaType>({
     resolver: zodResolver(signupSchema),
     defaultValues: SIGNUP_DEFAULT_VALUES,
@@ -34,15 +34,38 @@ export default function SignupForm({ variant }: { variant: "signup" }) {
   });
 
   const signupMutation = useMutation({
-    mutationFn: (values: InferredSignupSchemaType) =>
-      signup({
-        name: values.full_name,
-        email: values.email,
-        password: values.password,
-      }),
+    mutationFn: async (values: InferredSignupSchemaType) => {
+      try {
+        const response = await fetch(
+          "http://localhost:3001/api/v1/auth/register",
+          {
+            method: "POST",
+            body: JSON.stringify({
+              name: values.full_name,
+              email: values.email,
+              password: values.password,
+            }),
+            headers: {
+              "Content-Type": "application/json;charset=utf-8",
+            },
+            credentials: "include",
+          }
+        );
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.error);
+        }
+
+        return data;
+      } catch (err) {
+        throw err;
+      }
+    },
     onSuccess: (data: { message: string }) => {
       toast({ title: data.message });
-      setTimeout(() => redirect("/"), 1000);
+      router.push("/");
     },
     onError: (err) => {
       toast({ title: err.message, variant: "destructive" });
