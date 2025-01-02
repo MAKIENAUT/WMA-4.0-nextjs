@@ -30,6 +30,7 @@ function AboutUsImage() {
           height={2000}
           priority
           className="relative z-10 aspect-[16/9] rounded-sm object-cover object-center"
+          onError={() => console.error("Image failed to load")}
         />
       </div>
     </div>
