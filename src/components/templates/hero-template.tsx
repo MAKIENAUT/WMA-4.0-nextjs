@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import HeaderGroup from "../molecules/header-group";
 import HeaderImage from "../molecules/header-image";
 import HeaderText from "../molecules/header-text";
-import { hero_config } from "@/data/hero-config.json";
+import { hero_config } from "@/data/hero-config";
 
 export interface HeroConfig {
   title: string;

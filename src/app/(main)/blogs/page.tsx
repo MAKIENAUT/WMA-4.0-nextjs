@@ -5,7 +5,7 @@ import {
   BlogsCarouselDots,
   CarouselItem,
 } from "@/components/organisms/carousel";
-import { blogs } from "@/data/blogs.json";
+import { blogs } from "@/data/blogs";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

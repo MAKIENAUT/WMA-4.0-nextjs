@@ -2,8 +2,8 @@ import { Metadata } from "next";
 import HeroTemplate from "@/components/templates/hero-template";
 import ServiceTemplate from "@/components/templates/ServiceTemplate";
 import { notFound } from "next/navigation";
-import heroConfigs from "@/data/hero-config.json";
-import { individual_services } from "@/data/individual-service.json";
+import { hero_config } from "@/data/hero-config";
+import { individual_services } from "@/data/individual-service";
 
 // Adjusting the Params and SearchParams to be Promises
 type Props = {
@@ -45,8 +45,8 @@ export default async function ServicePage({ params }: Props) {
   // Type guard for valid hero route
   const isValidHeroRoute = (
     route: string
-  ): route is keyof typeof heroConfigs.hero_config => {
-    return route in heroConfigs.hero_config;
+  ): route is keyof typeof hero_config => {
+    return route in hero_config;
   };
 
   // Set the hero route, defaulting to 'home' if not found
