@@ -21,55 +21,15 @@ import FormContent from "../molecules/form-content";
 import FormTitle from "../molecules/form-title";
 import InputGroup from "../molecules/input-group";
 import FormWrapper from "../molecules/form-wrapper";
-import { toast } from "@/hooks/use-toast";
-import { useRouter } from "next/navigation";
-import { useMutation } from "@tanstack/react-query";
+import { useAuthContext } from "@/features/auth/components/auth-provider";
 
-export default function LoginForm({ variant }: { variant: "login" }) {
-  const router = useRouter();
+export default function LoginForm() {
+  const { loginMutation } = useAuthContext();
+
   const form = useForm<InferredLoginSchemaType>({
     resolver: zodResolver(loginSchema),
     defaultValues: LOGIN_DEFAULT_VALUES,
     mode: "onBlur",
-  });
-
-  const loginMutation = useMutation({
-    mutationFn: async (values: InferredLoginSchemaType) => {
-      try {
-        const response = await fetch(
-          "http://localhost:3001/api/v1/auth/login",
-          {
-            method: "POST",
-            body: JSON.stringify({
-              email: values.email,
-              password: values.password,
-            }),
-            headers: {
-              "Content-Type": "application/json;charset=utf-8",
-            },
-            credentials: "include",
-          }
-        );
-
-        const data = await response.json();
-        console.log({ data });
-
-        if (!response.ok) {
-          throw new Error(data.error);
-        }
-
-        return data;
-      } catch (err) {
-        throw err;
-      }
-    },
-    onSuccess: (data: { message: string }) => {
-      toast({ title: data.message });
-      router.push("/");
-    },
-    onError: (err) => {
-      toast({ title: err.message, variant: "destructive" });
-    },
   });
 
   function onSubmit(values: InferredLoginSchemaType) {
@@ -124,7 +84,7 @@ export default function LoginForm({ variant }: { variant: "login" }) {
           </FormWrapper>
         </Form>
       </FormContent>
-      <FormFooter variant={variant} />
+      <FormFooter variant="login" />
     </>
   );
 }

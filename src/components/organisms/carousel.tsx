@@ -214,13 +214,13 @@ CarouselItem.displayName = "CarouselItem";
 
 const BlogsCarouselDots = React.forwardRef<
   HTMLButtonElement,
-  React.ComponentProps<typeof Button> & { data: { category: string }[] }
->(({ data, className, variant = "carousel", size, ...props }, ref) => {
+  React.ComponentProps<typeof Button> & { items: { category: string }[] }
+>(({ items, className, variant = "carousel", size, ...props }, ref) => {
   const { selectedIndex, onDotButtonClick } = useCarousel();
 
   return (
     <div className="flex border-b border-black">
-      {data.map((data, index) => (
+      {items.map((item, index) => (
         <Button
           key={index}
           ref={ref}
@@ -233,8 +233,8 @@ const BlogsCarouselDots = React.forwardRef<
           onClick={() => onDotButtonClick(index)}
           {...props}
         >
-          {data.category.slice(0, 1).toUpperCase() + data.category.slice(1)}
-          <span className="sr-only">{data.category}</span>
+          {item.category.slice(0, 1).toUpperCase() + item.category.slice(1)}
+          <span className="sr-only">{item.category}</span>
         </Button>
       ))}
     </div>

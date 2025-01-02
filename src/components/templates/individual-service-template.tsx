@@ -1,4 +1,9 @@
-export const individual_services = {
+// ServiceTemplate.tsx
+import React from "react";
+import ServiceProcess from "../organisms/service-details";
+import { notFound } from "next/navigation";
+
+const individual_services = {
   "study-and-exchange": {
     id: "study-and-exchange",
     title: "Study and Exchange Visas (J1)",
@@ -240,3 +245,23 @@ export const individual_services = {
     ],
   },
 };
+
+interface ServiceTemplateProps {
+  serviceName:
+    | "study-and-exchange"
+    | "web-development"
+    | "family-based"
+    | "temporary-employment";
+}
+
+export default function IndividualServiceTemplate({
+  serviceName,
+}: ServiceTemplateProps) {
+  const serviceData = individual_services[serviceName];
+
+  if (!serviceData) {
+    notFound();
+  }
+
+  return <ServiceProcess serviceData={serviceData} serviceName={serviceName} />;
+}
