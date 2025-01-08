@@ -16,6 +16,23 @@ export const blogs = [
     category: "news",
     posts: [
       {
+        url: "uscis-form-updates-2025",
+        title: "USCIS Form Updates 2025: What You Need to Know",
+        image: {
+          src: "/forms.jpg",
+          position: "object-[center_center]",
+          alt: "USCIS forms",
+        },
+        date: "January 8, 2025",
+        text: [
+          "USCIS has announced important updates to two key immigration forms: Form G-1055 (Fee Schedule) - New edition released January 6, 2025, and Form G-325A (Biographic Information) - New edition from October 24, 2024.",
+          "These updates directly impact anyone planning to file new immigration applications, submit fee waiver requests, apply for travel documents or permanent residence, or complete biographic information forms for deferred action. Most importantly, starting February 5, 2025, USCIS will only accept the new edition of Form G-325A (10/24/24 version).",
+          "At West Migration Agency, our experienced team is ready to guide you through these changes. We offer expert review of your forms before submission, verification of correct fee payments, deadline management to avoid rejections, and complete application preparation services.",
+          "We encourage you to take action now by contacting us for a consultation, getting your applications reviewed, and ensuring compliance with new requirements. At West Migration Agency, we turn immigration updates into immigration success stories.",
+          "For more information or to schedule a consultation, please contact us at admin@westmigrationagency.us. Our team is ready to help you navigate these important changes and ensure your immigration journey stays on track.",
+        ],
+      },
+      {
         url: "record-high-international-students",
         title:
           "Open Doors Report: A Record High Number of International Students",
