@@ -19,7 +19,7 @@ export const blogs = [
         url: "uscis-form-updates-2025",
         title: "USCIS Form Updates 2025: What You Need to Know",
         image: {
-          src: "/forms.jpg",
+          src: "/forms.png",
           position: "object-[center_center]",
           alt: "USCIS forms",
         },
