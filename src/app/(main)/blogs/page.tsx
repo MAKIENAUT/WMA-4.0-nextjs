@@ -16,6 +16,24 @@ export const blogs = [
     category: "news",
     posts: [
       {
+        url: "fy-2026-h1b-registration",
+        title:
+          "USCIS Announces FY 2026 H-1B Registration Details: Key Changes and Important Dates",
+        image: {
+          src: "/h1b.jpg",
+          position: "object-[center_center]",
+          alt: "H-1B visa registration",
+        },
+        date: "February 5, 2025",
+        text: [
+          "USCIS has announced the opening of the FY 2026 H-1B cap initial registration period, running from March 7 to March 24, 2025. This year brings several important updates and enhancements to the registration process that employers and immigration practitioners should know about.",
+          "Key updates include a $215 registration fee per beneficiary and an increased daily credit card transaction limit from $24,999.99 to $99,999.99. The selection process will continue to use the beneficiary-centric approach introduced in FY 2025, where registrations are selected by unique beneficiary rather than by registration.",
+          "USCIS has implemented several organizational account enhancements for FY 2026, including new features allowing paralegals to work with multiple legal representatives, simplified processes for adding paralegals to company clients, auto-population of certain Form I-129 fields, and new bulk upload capabilities for H-1B beneficiary data.",
+          "First-time registrants can create their accounts at any time before the registration period begins. While representatives can add clients to their accounts now, the actual beneficiary information submission and fee payment must wait until the March 7 opening date. For transactions exceeding $99,999.99, employers can use Automated Clearing House (ACH) payments.",
+          "At West Migration Agency, we understand the complexity of the H-1B registration process and are ready to assist employers with all aspects of their H-1B petitions. For more information or assistance with your H-1B registrations, please contact us at admin@westmigrationagency.us.",
+        ],
+      },
+      {
         url: "uscis-form-updates-2025",
         title: "USCIS Form Updates 2025: What You Need to Know",
         image: {
