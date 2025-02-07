@@ -34,6 +34,21 @@ export const blogs = [
         ],
       },
       {
+        url: "uscis-waives-COVID-19-vaccination-requirement-for-adjustment-of-status-applicants",
+        title:
+          "USCIS Waives COVID-19 Vaccination Requirement for Adjustment of Status Applicants",
+        image: {
+          src: "/uscis-covid-19-vaccination.png",
+          position: "object-center",
+          alt: "USCIS news update",
+        },
+        date: "January 26, 2025",
+        text: [
+          "As your trusted immigration partner, West Migration Agency wants to keep you informed about the latest USCIS changes:",
+          "Effective Jan. 22, 2025, USCIS is waiving any and all requirements that applicants for adjustment of status to that of a lawful permanent resident present documentation on their Form I-693, Report of Immigration Medical Examination and Vaccination Record, that they received the COVID-19 vaccination. USCIS will not issue any Request for Evidence or Notice of Intent to Deny related to proving a COVID-19 vaccination. USCIS will not deny any adjustment of status application based on the applicant’s failure to present documentation that they received the COVID-19 vaccination.",
+        ],
+      },
+      {
         url: "uscis-form-updates-2025",
         title: "USCIS Form Updates 2025: What You Need to Know",
         image: {
