@@ -1,5 +1,5 @@
 "use client";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { createContext, ReactNode, useContext, useState } from "react";
 import { useAuthMe } from "../api/use-auth-me";
 import { useAuthLogout } from "@/features/auth/api/use-auth-logout";
@@ -31,13 +31,11 @@ export function useAuthContext() {
 }
 
 export default function AuthProvider({ children }: { children: ReactNode }) {
-  const searchParams = useSearchParams();
-  const callbackURL = searchParams.get("callbackURL") || "/";
   const [disabled, setDisabled] = useState(false);
   const router = useRouter();
   const { data, isPending, isError } = useAuthMe();
-  const loginMutation = useAuthLogin(router, setDisabled, callbackURL);
-  const signupMutation = useAuthRegister(router, setDisabled, callbackURL);
+  const loginMutation = useAuthLogin(router, setDisabled);
+  const signupMutation = useAuthRegister(router, setDisabled);
   const logoutMutation = useAuthLogout(router);
   const contextValue = {
     disabled,

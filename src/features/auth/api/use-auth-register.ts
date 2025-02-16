@@ -6,8 +6,7 @@ import { Dispatch, SetStateAction } from "react";
 
 export function useAuthRegister(
   router: AppRouterInstance,
-  setDisabled: Dispatch<SetStateAction<boolean>>,
-  callbackURL: string
+  setDisabled: Dispatch<SetStateAction<boolean>>
 ) {
   const queryClient = useQueryClient();
   return useMutation({
@@ -44,7 +43,7 @@ export function useAuthRegister(
       setDisabled(false);
       queryClient.invalidateQueries({ queryKey: ["userAuthMe"] });
       toast({ title: data.message });
-      router.push(callbackURL);
+      router.push("/");
     },
     onError: (err) => {
       setDisabled(false);
