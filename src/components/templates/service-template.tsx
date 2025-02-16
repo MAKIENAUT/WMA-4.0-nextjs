@@ -10,7 +10,7 @@ const services = [
   {
     title: "Study And Exchange",
     description:
-      "Our study and exchange programs offer excellent opportunities for those looking to further their education or gain international experience. We work with top universities and institutions worldwide to provide our clients with access to high-quality educational programs. In addition, we work with different school districts across the United States that partner with visa sponsors. Our team is committed to helping you find the program that best suits your needs and supports you throughout the application process.",
+      "Our study and exchange programs offer excellent opportunities for those looking to further their education or gain international experience. We work with top universities and institutions worldwide to provide our clients with access to high-quality educational programs.",
     imageUrl: "/student-services.jpg",
     buttonLabel: "Learn more",
     route: "/services/study-and-exchange",
@@ -131,11 +131,18 @@ function ServiceCard({
       <ServicesHeading level="h2">{title}</ServicesHeading>
       <div className="flex flex-col rounded-lg bg-gradient-to-r from-wma-darkTeal to-wma-teal shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] sm:flex-row">
         <ServicesImage src={imageUrl} alt={title} />
-        <div className="flex size-full flex-col gap-4 p-4 sm:gap-8 sm:overflow-y-auto lg:p-6">
+        <div className="flex size-full flex-col gap-8 p-4 sm:gap-8 sm:overflow-y-auto lg:p-6">
           <ServicesDescription>{description}</ServicesDescription>
-          <Button variant="default" className={`self-start`} asChild>
-            <Link href={route}>{buttonLabel}</Link>
-          </Button>
+          <div className="inline-grid grid-cols-2 gap-4 md:inline-flex">
+            <Button variant="default" className={`self-start`} asChild>
+              <Link href={route}>{buttonLabel}</Link>
+            </Button>
+            {title !== "Web Development" && (
+              <Button variant="default" className={`self-start`} asChild>
+                <Link href={`${route}/form`}>Apply Now</Link>
+              </Button>
+            )}
+          </div>
         </div>
       </div>
     </div>
@@ -151,7 +158,7 @@ export default function ServiceTemplate({ type }: ServiceSectionProps) {
     <section
       className={
         type === "section"
-          ? "mb-32 px-4 sm:px-8 xl:px-20"
+          ? "mb-32 px-4 sm:mb-16 sm:px-8 xl:px-20"
           : "px-4 pt-10 sm:px-8 md:pt-12 xl:px-20"
       }
     >
