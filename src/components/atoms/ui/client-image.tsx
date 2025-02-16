@@ -13,6 +13,10 @@ interface ClientImageProps {
 
 export default function ClientImage(props: ClientImageProps) {
   return (
-    <Image {...props} onError={() => console.error("Image failed to load")} />
+    <Image
+      {...props}
+      alt=""
+      onError={() => console.error("Image failed to load")}
+    />
   );
 }
