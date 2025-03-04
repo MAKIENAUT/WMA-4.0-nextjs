@@ -7,10 +7,17 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { blogs } from "../../page";
 
-function getPostData(categoryName: string, postName: string) {
-  return blogs
-    .find((data) => data.category === categoryName)
-    ?.posts.find((post) => post.url === postName) as DataProps;
+function getPostData(
+  categoryName: string,
+  postName: string
+): DataProps | undefined {
+  const category = blogs.find((data) => data.category === categoryName);
+  if (!category) return undefined;
+
+  const post = category.posts.find((post) => post.url === postName);
+  if (!post) return undefined;
+
+  return post as DataProps;
 }
 
 type MetadataProps = {
@@ -30,9 +37,12 @@ export async function generateMetadata({
     };
   }
 
+  // Extract first paragraph text by removing HTML tags
+  const description = data.text[0]?.replace(/<[^>]*>/g, "") || "";
+
   return {
     title: data.title + " | WMA",
-    description: data.text[0],
+    description: description,
   };
 }
 
@@ -48,6 +58,21 @@ type DataProps = {
   text: string[];
 };
 
+// Mapping of HTML tags to Tailwind classes
+const tagStyles = {
+  h1: "text-3xl font-bold text-gray-900 mb-4 mt-6",
+  h2: "text-2xl font-semibold text-gray-800 mb-3 mt-5",
+  h3: "text-xl font-semibold text-gray-700 mb-2 mt-4",
+  p: "text-base text-gray-600 leading-relaxed mb-4",
+  strong: "font-bold text-gray-900",
+  em: "italic text-gray-700",
+  ul: "list-disc list-inside mb-4 text-gray-600 pl-4",
+  ol: "list-decimal list-inside mb-4 text-gray-600 pl-4",
+  li: "mb-2",
+  a: "text-wma-teal hover:text-wma-darkTeal underline",
+  blockquote: "border-l-4 border-wma-teal pl-4 italic text-gray-600 my-4",
+};
+
 export default async function page({
   params,
 }: {
@@ -59,6 +84,16 @@ export default async function page({
   if (!data) {
     notFound();
   }
+
+  // Function to add Tailwind classes to HTML tags
+  const addTailwindClasses = (htmlString: string) => {
+    // Use a simple regex to add classes to known tags
+    return Object.entries(tagStyles).reduce((acc, [tag, classes]) => {
+      // Match opening tags and add classes
+      const openTagRegex = new RegExp(`<(${tag})(?![^>]*class=)`, "g");
+      return acc.replace(openTagRegex, `<$1 class="${classes}"`);
+    }, htmlString);
+  };
 
   return (
     <section className="bg-white pb-32">
@@ -95,8 +130,13 @@ export default async function page({
                 </h1>
               </div>
               <div className="flex flex-col gap-4">
-                {data.text.map((text, i) => (
-                  <p key={i}>{text}</p>
+                {data.text.map((textElement, i) => (
+                  <div
+                    key={i}
+                    dangerouslySetInnerHTML={{
+                      __html: addTailwindClasses(textElement),
+                    }}
+                  />
                 ))}
               </div>
             </div>
