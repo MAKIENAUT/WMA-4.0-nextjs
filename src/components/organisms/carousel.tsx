@@ -233,13 +233,23 @@ const BlogsCarouselDots = React.forwardRef<
           onClick={() => onDotButtonClick(index)}
           {...props}
         >
-          {item.category.slice(0, 1).toUpperCase() + item.category.slice(1)}
+          {item.category === "news"
+            ? "News"
+            : item.category === "posts"
+              ? "Posts"
+              : item.category === "all"
+                ? "All"
+                : item.category === "updates"
+                  ? "Updates"
+                  : item.category.slice(0, 1).toUpperCase() +
+                    item.category.slice(1)}
           <span className="sr-only">{item.category}</span>
         </Button>
       ))}
     </div>
   );
 });
+
 BlogsCarouselDots.displayName = "BlogCarouselDots";
 
 const ServiceCarouselDots = React.forwardRef<
