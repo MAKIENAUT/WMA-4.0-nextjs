@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { ChevronRight } from "lucide-react";
+// import { ChevronRight } from "lucide-react";
 import {
   Carousel,
   CarouselContent,
